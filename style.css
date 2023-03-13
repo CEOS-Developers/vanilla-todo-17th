@@ -12,6 +12,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("./bg.jpg");
 }
 .card {
   width: 30vw;
@@ -54,4 +55,12 @@ body {
 
 .green {
   background-color: #00ca4e;
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
