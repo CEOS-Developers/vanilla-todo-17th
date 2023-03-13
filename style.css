@@ -33,6 +33,7 @@ body {
   background-color: #312f34;
   border-radius: 12px 12px 0 0;
   box-sizing: border-box;
+  position: relative;
 }
 
 .circleDiv {
@@ -68,6 +69,9 @@ body {
   align-items: center;
   font-size: 24px;
   border-radius: 4px;
+  position: absolute;
+  right: 12px;
+  padding: 2px;
 }
 .plusBtn:hover {
   background-color: #656565;
@@ -107,7 +111,7 @@ body {
   background-color: #201c23;
   color: white;
   opacity: 1;
-  transition: 1s;
+  transition: 0.5s;
   animation: slideIn 0.1s;
 }
 @keyframes slideIn {
