@@ -6,6 +6,14 @@ body {
   height: 100%;
 }
 
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .container {
   width: 100%;
   height: 100%;
@@ -13,8 +21,13 @@ body {
   justify-content: center;
   align-items: center;
   background-image: url('./bg.jpg');
+  position: relative;
 }
+
 .card {
+  /* temporarilly disabled due to fast load */
+  /* animation: appear 1s 1s forwards cubic-bezier(0.8, 0, 0, 0.8);
+  opacity: 0; */
   width: 30vw;
   height: 48vw;
   min-width: 300px;
@@ -87,9 +100,6 @@ body {
   position: relative;
 }
 
-.covered {
-  background-color: #18181a;
-}
 .hoverDiv {
   position: absolute;
   top: 10vh;
@@ -97,7 +107,7 @@ body {
 }
 .covered .hoverDiv {
   visibility: visible;
-  position: initial;
+  position: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,9 +118,10 @@ body {
   min-height: 200px;
   border: 1px solid rgb(132, 132, 132);
   border-radius: 8px;
-  background-color: #201c23;
+  background-color: #18181a;
   color: white;
   opacity: 1;
+  justify-content: space-evenly;
   transition: 0.5s;
   animation: slideIn 0.1s;
 }
@@ -143,4 +154,117 @@ body {
 }
 .customInput:focus {
   outline: none;
+}
+
+.tagDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.tagred {
+  background-color: #e84b31;
+}
+
+.blue {
+  background-color: #3476e1;
+}
+
+.orange {
+  background-color: #de8b32;
+}
+
+.tagyellow {
+  background-color: #e5bd3f;
+}
+
+.taggreen {
+  background-color: #56b83d;
+}
+
+.purple {
+  background-color: #9e54ba;
+}
+
+.whitering {
+  border: 1px solid white;
+}
+
+.submitBtn {
+  width: 40%;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background-color: #2c2830;
+  box-shadow: inset -1px -1px 2px 0px #656565;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.todoWord {
+  color: white;
+  font-weight: 800;
+  font-size: 20px;
+  display: flex;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 8px 0 0 12px;
+}
+.todoDiv {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  overflow-y: auto;
+  position: relative;
+  align-content: flex-start;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #5e5e5e;
+  border-radius: 4px;
+}
+
+.todoElem {
+  display: flex;
+  flex-direction: column;
+  width: 28vw;
+  height: 60px;
+  min-width: 280px;
+  background-color: #323232;
+  margin: 5px 0;
+  border-radius: 8px;
+  color: #aeaeae;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.todoTitle {
+  display: block;
+  width: 90%;
+  min-height: 24px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  font-size: 20px;
+  font-weight: 800;
+}
+.todoTime {
+  font-size: 14px;
+  align-self: flex-end;
+}
+
+/* should be at last!!!! */
+.covered {
+  visibility: hidden;
+}
+
+.underline {
+  border-bottom: 1px solid rgb(154, 154, 154);
 }
