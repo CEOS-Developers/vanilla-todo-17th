@@ -2,13 +2,85 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="60" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="background">
+      <div class="container">
+        <h1 class="headline">MARCH</h1>
+        <div class="datebox">
+          <h3 class="datebox__month">3.</h3>
+
+          <h3 class="datebox__date">14</h3>
+
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <h3 class="datebox__day">TUESDAY</h3>
+        </div>
+
+        <div class="today-goal">
+          <h5 class="today-goal__text">TODAY GOAL</h5>
+          <input type="text" class="text-input" />
+        </div>
+
+        <div class="todo-input-box">
+          <input
+            type="text"
+            class="todo-input-box__input"
+            placeholder="ENTER YOUR TODO"
+          />
+          <img
+            src="./images/cherry-blossom.svg"
+            class="todo-input-box__icon"
+            width="30px"
+            height="30px"
+          />
+        </div>
+
+        <div class="tasks">
+          <div class="tasks__todo">
+            <h5 class="tasks__todo__text">TO DO</h5>
+            <ul class="tasks__todo__content"></ul>
+          </div>
+
+          <div class="tasks__done">
+            <h5 class="tasks__done__text">DONE</h5>
+            <ul class="tasks__done__content"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="task.js"></script>
+
+    <script>
+      let today = new Date();
+      let days = [
+        "SUNDAY",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+      ];
+
+      let currentMonth = today.getMonth() + 1;
+      let currentDate = today.getDate();
+      let currentDayIdx = today.getDay();
+      let currentDay = days[currentDayIdx];
+
+      const month = document.getElementsByClassName("datebox__month")[0];
+      month.innerHTML = currentMonth + ".";
+
+      const date = document.getElementsByClassName("datebox__date")[0];
+      date.innerHTML = currentDate;
+
+      const day = document.getElementsByClassName("datebox__day")[0];
+      day.innerHTML = currentDay;
+    </script>
   </body>
-  <script src="script.js"></script>
 </html>

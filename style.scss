@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Tera:wght@700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Tera:wght@400;700&display=swap");
+
+$pink: #f8a6a2;
+$light-pink: #faefed;
+$medium-pink: #ffdfda;
+$darken-pink: #e6b0b1;
+$large-font-size: 60px;
+$medium-font-size: 40px;
+$small-font-size: 20px;
+$gray: #6f6f6f;
+
+@mixin flex-container(
+  $direction: row,
+  $spacing: flex-start,
+  $alignment: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $spacing;
+  align-content: $alignment;
+}
+* {
+  box-sizing: border-box;
+}
+.background {
+  @include flex-container(row, center, center);
+  height: 100vh;
+  width: 100%;
+}
+.container {
+  @include flex-container(column, flex-start, center);
+  padding: 50px 80px;
+
+  box-shadow: 0px 4px 4px rgba(45, 45, 45, 0.45);
+  width: 50%;
+}
+
+.headline {
+  color: $pink;
+  letter-spacing: 3px;
+  @include flex-container(row, center, center);
+}
+
+h1 {
+  font-size: $large-font-size;
+  margin: 0;
+}
+h3 {
+  font-size: $medium-font-size;
+  margin: 0;
+}
+h5 {
+  font-size: $small-font-size;
+  margin: 0;
+}
+.datebox {
+  @include flex-container(row, center, center);
+  margin: 10px;
+  .datebox__month,
+  .datebox__date {
+    color: $gray;
+  }
+  .datebox__day {
+    font-weight: 100;
+    color: $gray;
+  }
+}
+.today-goal {
+  @include flex-container(column, flex-start, center);
+  background-color: $light-pink;
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+
+  .today-goal__text {
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: $darken-pink;
+    align-self: center;
+  }
+
+  .text-input {
+    border: none;
+    background: transparent;
+  }
+}
+
+.todo-input-box {
+  @include flex-container(row, space-between, center);
+  margin-top: 50px;
+  margin-bottom: 30px;
+  .todo-input-box__icon {
+    // 클릭시 뱅글 돌아감
+    cursor: pointer;
+  }
+  .todo-input-box__input {
+    border: 3px solid $medium-pink;
+    width: 90%;
+    text-align: center;
+
+    ::placeholder {
+      color: $darken-pink;
+      letter-spacing: 3px;
+    }
+  }
+}
+
+.tasks {
+  @include flex-container(row, space-between, stretch);
+  height: 100%;
+  width: 100%;
+
+  .tasks__todo {
+    @include flex-container(column, center, center);
+    width: 45%;
+
+    .tasks__todo__text {
+      color: $darken-pink;
+      letter-spacing: 3px;
+      align-self: center;
+    }
+    .tasks__todo__content {
+      border: 3px solid $medium-pink;
+      height: 100%;
+      width: 100%;
+      padding-top: 10px;
+      list-style: none;
+      li {
+        font-size: 15px;
+        font-family: "LexendTera";
+      }
+    }
+  }
+
+  .tasks__done {
+    @include flex-container(column, flex-start, center);
+    width: 45%;
+
+    .tasks__done__text {
+      color: $darken-pink;
+      letter-spacing: 3px;
+      align-self: center;
+    }
+    .tasks__done__content {
+      border: 3px solid $medium-pink;
+      height: 100%;
+      width: 100%;
+      padding-top: 10px;
+      list-style: none;
+      li {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+.rotate_anim {
+  animation: rotate 1s timing-function 0s;
+}
+
+.icon__hover {
+  cursor: pointer;
+}
