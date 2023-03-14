@@ -1,3 +1,16 @@
+function moveToDone(todoTaskElement) {
+  const newDoneTaskElement = todoTaskElement;
+
+  const checkIcon = document.createElement("img");
+  checkIcon.src = "./images/check.svg";
+
+  //replace icon
+  todoTaskElement.replaceChild(checkIcon, todoTaskElement.childNodes[0]);
+  console.log(newDoneTaskElement);
+  const doneLists = document.getElementsByClassName("tasks__done__content")[0];
+  doneLists.appendChild(newDoneTaskElement);
+}
+
 function addTodo() {
   const input = document.getElementsByClassName("todo-input-box__input")[0];
 
