@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="task.js"></script>
 
     <script>
       let today = new Date();
@@ -73,7 +73,14 @@
       let currentDayIdx = today.getDay();
       let currentDay = days[currentDayIdx];
 
-      console.log(currentMonth, currentDate, currentDay);
+      const month = document.getElementsByClassName("datebox__month")[0];
+      month.innerHTML = currentMonth + ".";
+
+      const date = document.getElementsByClassName("datebox__date")[0];
+      date.innerHTML = currentDate;
+
+      const day = document.getElementsByClassName("datebox__day")[0];
+      day.innerHTML = currentDay;
     </script>
   </body>
 </html>

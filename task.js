@@ -29,7 +29,7 @@ function addTodo() {
   uncheckIcon.src = "./images/uncheck.svg";
   uncheckIcon.className = "icon__hover";
   uncheckIcon.onclick = function (e) {
-    // moveToDone(e.target.parentElement);
+    moveToDone(e.target.parentElement);
   };
   newTaskNode.appendChild(uncheckIcon);
 
@@ -50,10 +50,22 @@ function addTodo() {
   todoLists.appendChild(newTaskNode);
 
   console.log(newTaskNode);
-  alert("add success");
+
   input.value = ""; //input flush
 }
 
 const inputBtn = document.getElementsByClassName("todo-input-box__icon")[0];
 const input = document.getElementsByClassName("todo-input-box__input")[0];
-inputBtn.onclick = input.onsubmit = addTodo;
+inputBtn.onclick = () => {
+  inputBtn.classList.remove("rotate__anim");
+  /*
+  [ 투두 입력 완료시 벚꽃 버튼 돌아가게 하는 효과 ]  
+  이 부분 왜 제대로 동작하지 않는지 (?) 잘 모르겠어요..!
+  최초 실행때는 잘 돌아가는데, 그 이후 실행 때는 제대로 동작하지 않네요 ㅜ.ㅜ 
+   */
+
+  inputBtn.classList.add("rotate__anim");
+
+  addTodo();
+};
+input.onsubmit = addTodo;
