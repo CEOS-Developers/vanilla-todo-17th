@@ -1,4 +1,5 @@
 # 1주차 미션: Vanilla-Todo
+> vanila js 로 Todolist 만들기 
 
 # 서론
 
