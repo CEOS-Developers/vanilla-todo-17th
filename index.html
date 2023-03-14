@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="5" />
+    <meta http-equiv="refresh" content="60" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Todo</title>
     <link rel="stylesheet" href="style.css" />
@@ -13,7 +13,6 @@
       <div class="container">
         <h1 class="headline">MARCH</h1>
         <div class="datebox">
-          <!--같은 스타일이라도 의미상의 구분을 하는 것이 좋나?! -->
           <h3 class="datebox__month">3.</h3>
 
           <h3 class="datebox__date">14</h3>
@@ -44,22 +43,12 @@
         <div class="tasks">
           <div class="tasks__todo">
             <h5 class="tasks__todo__text">TO DO</h5>
-            <div class="tasks__todo__content">
-              <ul>
-                <li>
-                  <img src="./images/uncheck.svg" />&nbsp;CEOS FE 과제하기
-                </li>
-              </ul>
-            </div>
+            <ul class="tasks__todo__content"></ul>
           </div>
 
           <div class="tasks__done">
             <h5 class="tasks__done__text">DONE</h5>
-            <div class="tasks__done__content">
-              <ul>
-                <li><img src="./images/check.svg" />&nbsp; CEOS FE 과제하기</li>
-              </ul>
-            </div>
+            <ul class="tasks__done__content"></ul>
           </div>
         </div>
       </div>
