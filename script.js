@@ -54,8 +54,8 @@ function todoElemGen(data, queryDiv) {
   todoElem.append(todoTitleDiv, todoTimeDiv);
   queryDiv.appendChild(todoElem);
 
-  todoElem.addEventListener('click', () => {
-    todoClickControler(todoElem, queryDiv);
+  todoElem.addEventListener('click', (e) => {
+    todoClickControler(e, todoElem, queryDiv);
   });
 }
 
@@ -98,6 +98,7 @@ function renderSubFunc(query) {
   if (mainDiv.className === 'mainDiv') {
     let Items = JSON.parse(localStorage.getItem(listName));
     if (Items) {
+      Items.sort((a, b) => new Date(a.time) - new Date(b.time));
       Items.forEach((item) => todoElemGen(item, queryDiv));
     }
   }
@@ -117,22 +118,95 @@ function getClickRatio(div, e) {
   return x / width;
 }
 
-const test = document.querySelector('#todoPlaceHolder2');
-test.addEventListener('click', (e) => {
-  test.classList.toggle('scrollRight');
-  console.log(getClickRatio(test, e));
-});
+function todoClickControler(e, todoElem, queryDiv) {
+  let clickratio = getClickRatio(todoElem, e);
+  if (todoElem.classList.contains('scrollLeft')) {
+    clickratio = clickratio - 0.3;
+  } else if (todoElem.classList.contains('scrollRight')) {
+    clickratio = clickratio + 0.3;
+  }
 
-const test2 = document.querySelector('#todoPlaceHolder3');
-test2.addEventListener('click', (e) => {
-  test2.classList.toggle('scrollLeft');
-});
+  if (clickratio < 0.5) {
+    if (todoElem.classList.contains('scrollRight')) {
+      todoElem.classList.toggle('scrollRight');
+    } else if (todoElem.classList.contains('scrollLeft')) {
+      if (queryDiv === todoDiv) {
+        deleteTodoElem(todoElem);
+      } else {
+        moveToTodoList(todoElem);
+      }
+    } else {
+      todoElem.classList.toggle('scrollLeft');
+    }
+  } else {
+    if (queryDiv === todoDiv) {
+      if (todoElem.classList.contains('scrollLeft')) {
+        todoElem.classList.toggle('scrollLeft');
+      } else if (todoElem.classList.contains('scrollRight')) {
+        moveToDoneList(todoElem);
+      } else {
+        todoElem.classList.toggle('scrollRight');
+      }
+    } else {
+      if (todoElem.classList.contains('scrollLeft')) {
+        todoElem.classList.toggle('scrollLeft');
+      }
+    }
+  }
+}
+
+function moveToDoneList(todoElem) {
+  let elemData = {
+    title: todoElem.children[0].innerHTML,
+    time: todoElem.id,
+  };
+
+  let todoList = JSON.parse(localStorage.getItem('todoList'));
+  let doneList = JSON.parse(localStorage.getItem('doneList')) ?? [];
+  let index = todoList.findIndex((item) => item.time === elemData.time);
+
+  if (index !== -1) {
+    todoList.splice(index, 1);
+    doneList.push(elemData);
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+    localStorage.setItem('doneList', JSON.stringify(doneList));
+    renderList();
+  }
+}
+
+function moveToTodoList(todoElem) {
+  let elemData = {
+    title: todoElem.children[0].innerHTML,
+    time: todoElem.id,
+  };
+
+  let todoList = JSON.parse(localStorage.getItem('todoList')) ?? [];
+  let doneList = JSON.parse(localStorage.getItem('doneList'));
+  let index = doneList.findIndex((item) => item.time === elemData.time);
+
+  if (index !== -1) {
+    doneList.splice(index, 1);
+    todoList.push(elemData);
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+    localStorage.setItem('doneList', JSON.stringify(doneList));
+    renderList();
+  }
+}
+
+function deleteTodoElem(todoElem) {
+  let todoList = JSON.parse(localStorage.getItem('todoList'));
+  let index = todoList.findIndex((item) => item.time === todoElem.id);
+  if (index !== -1) {
+    todoList.splice(index, 1);
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+  }
+  renderList();
+}
 
 //처음에 함수 한번 호출
 function init() {
   renderList();
+  setInterval(renderList, 30000);
 }
 
 init();
-// 너무 많은 rendering을 막기 위해 10초에 한번만 자동으로 reload
-setInterval(renderList, 10000);
