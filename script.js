@@ -2,7 +2,8 @@ const plusIcon = document.querySelector('.plusBtn');
 const submitBtn = document.querySelector('.submitBtn');
 const hoverDiv = document.querySelector('.hoverDiv');
 const mainDiv = document.querySelector('.mainDiv');
-const todoDiv = document.querySelector('.todoDiv');
+const todoDiv = document.querySelector('#todoDiv');
+const doneDiv = document.querySelector('#doneDiv');
 const inputTag = document.querySelector('.customInput');
 
 const todoPlaceHolder = document.getElementById('todoPlaceHolder');
@@ -34,9 +35,9 @@ submitBtn.addEventListener('click', () => {
   location.reload();
 });
 
-function todoElemGen(data) {
+function todoElemGen(data, queryDiv) {
   const todoElem = document.createElement('div');
-  todoElem.className = `todoElem ${data.type}`;
+  todoElem.className = `todoElem`;
   // React에서는 Map이나 forEach를 사용하는 경우 key값을 넣어주어야 하는데, html은 다른가?
   // todoElem.key = data.time;
   todoElem.id = data.time;
@@ -51,7 +52,11 @@ function todoElemGen(data) {
   todoTimeDiv.innerHTML = timeCalculate(eslapsedTime);
 
   todoElem.append(todoTitleDiv, todoTimeDiv);
-  todoDiv.appendChild(todoElem);
+  queryDiv.appendChild(todoElem);
+
+  todoElem.addEventListener('click', () => {
+    todoClickControler(todoElem, queryDiv);
+  });
 }
 
 function timeCalculate(time_num) {
@@ -82,23 +87,46 @@ function timeCalculate(time_num) {
   return timeString;
 }
 
-// when plus btn not clicked
-function renderList() {
-  // 현재는 todoDiv의 child를 다 밀어버리고 새로 추가하는 방식으로 구현
-  if (localStorage.getItem('todoList') !== null) {
-    while (todoDiv.firstChild) {
-      todoDiv.removeChild(todoDiv.firstChild).remove();
+function renderSubFunc(query) {
+  let listName = query === 'todo' ? 'todoList' : 'doneList';
+  let queryDiv = query === 'todo' ? todoDiv : doneDiv;
+  if (localStorage.getItem(listName) !== null) {
+    while (queryDiv.firstChild) {
+      queryDiv.removeChild(queryDiv.firstChild).remove();
     }
   }
   if (mainDiv.className === 'mainDiv') {
-    let Items = JSON.parse(localStorage.getItem('todoList'));
+    let Items = JSON.parse(localStorage.getItem(listName));
     if (Items) {
-      Items.forEach((item) => todoElemGen(item));
+      Items.forEach((item) => todoElemGen(item, queryDiv));
     }
   }
 }
 
-function transferToDone() {}
+// when plus btn not clicked
+function renderList() {
+  renderSubFunc('todo');
+  renderSubFunc('done');
+}
+
+// div가 클릭되었을 때 그 div의 어느 부분을 클릭했는지 계산
+function getClickRatio(div, e) {
+  const rect = div.getBoundingClientRect();
+  const width = rect.width;
+  const x = e.clientX - rect.left;
+  return x / width;
+}
+
+const test = document.querySelector('#todoPlaceHolder2');
+test.addEventListener('click', (e) => {
+  test.classList.toggle('scrollRight');
+  console.log(getClickRatio(test, e));
+});
+
+const test2 = document.querySelector('#todoPlaceHolder3');
+test2.addEventListener('click', (e) => {
+  test2.classList.toggle('scrollLeft');
+});
 
 //처음에 함수 한번 호출
 function init() {
