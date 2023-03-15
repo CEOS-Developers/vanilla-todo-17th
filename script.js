@@ -37,12 +37,49 @@ submitBtn.addEventListener('click', () => {
 function todoElemGen(data) {
   const todoElem = document.createElement('div');
   todoElem.className = `todoElem ${data.type}`;
-  let eslapsedMin = (new Date().getTime() - new Date(data.time)) / (1000 * 60);
-  todoElem.innerHTML = `
-        <div class='todoTitle'>${data.title}</div>
-        <div class='todoTime'>${eslapsedMin.toFixed()}min...</div>    
-        `;
+  // React에서는 Map이나 forEach를 사용하는 경우 key값을 넣어주어야 하는데, html은 다른가?
+  // todoElem.key = data.time;
+  todoElem.id = data.time;
+  let eslapsedTime = (new Date().getTime() - new Date(data.time)) / (1000 * 60);
+
+  const todoTitleDiv = document.createElement('div');
+  todoTitleDiv.className = 'todoTitle';
+  todoTitleDiv.innerHTML = data.title;
+
+  const todoTimeDiv = document.createElement('div');
+  todoTimeDiv.className = 'todoTime';
+  todoTimeDiv.innerHTML = timeCalculate(eslapsedTime);
+
+  todoElem.append(todoTitleDiv, todoTimeDiv);
   todoDiv.appendChild(todoElem);
+}
+
+function timeCalculate(time_num) {
+  let eslapsedTime = time_num;
+  let eslapsedHour = 0;
+  let eslapsedDay = 0;
+  while (eslapsedTime >= 60) {
+    eslapsedHour += 1;
+    eslapsedTime -= 60;
+  }
+  while (eslapsedHour > 24) {
+    eslapsedDay += 1;
+    eslapsedHour -= 24;
+  }
+  let timeString = '';
+  if (eslapsedDay > 0) {
+    timeString += `${eslapsedDay}d `;
+  }
+  if (eslapsedHour > 0) {
+    timeString += `${eslapsedHour}h `;
+  }
+  if (1 <= eslapsedTime) {
+    timeString += `${eslapsedTime.toFixed()}m`;
+  }
+  if (timeString === '') {
+    timeString = 'just now';
+  }
+  return timeString;
 }
 
 // when plus btn not clicked
@@ -50,16 +87,24 @@ function renderList() {
   // 현재는 todoDiv의 child를 다 밀어버리고 새로 추가하는 방식으로 구현
   if (localStorage.getItem('todoList') !== null) {
     while (todoDiv.firstChild) {
-      todoDiv.removeChild(todoDiv.firstChild);
+      todoDiv.removeChild(todoDiv.firstChild).remove();
     }
   }
   if (mainDiv.className === 'mainDiv') {
     let Items = JSON.parse(localStorage.getItem('todoList'));
-    Items.map((item) => todoElemGen(item));
+    if (Items) {
+      Items.forEach((item) => todoElemGen(item));
+    }
   }
 }
 
+function transferToDone() {}
+
 //처음에 함수 한번 호출
-renderList();
+function init() {
+  renderList();
+}
+
+init();
 // 너무 많은 rendering을 막기 위해 10초에 한번만 자동으로 reload
 setInterval(renderList, 10000);

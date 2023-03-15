@@ -1,11 +1,4 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-}
-
+/* keyframes */
 @keyframes appear {
   from {
     opacity: 0;
@@ -14,6 +7,65 @@ body {
     opacity: 1;
   }
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes lightSpeedInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+
+  60% {
+    transform: skewX(-20deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: skewX(5deg);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes lightSpeedOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}
+
+/* variables */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #5e5e5e;
+  border-radius: 4px;
+}
+
+/* styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .container {
   width: 100%;
   height: 100%;
@@ -101,13 +153,13 @@ body {
 }
 
 .hoverDiv {
-  position: absolute;
-  top: 10vh;
   visibility: hidden;
+  display: none;
 }
 .covered .hoverDiv {
+  position: absolute;
   visibility: visible;
-  position: inherit;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,14 +176,6 @@ body {
   justify-content: space-evenly;
   transition: 0.5s;
   animation: slideIn 0.1s;
-}
-@keyframes slideIn {
-  from {
-    transform: translateY(-10%);
-  }
-  to {
-    transform: translateY(0);
-  }
 }
 
 .hoverTitle {
@@ -159,6 +203,8 @@ body {
 .tagDiv {
   display: flex;
   flex-direction: row;
+  width: 60%;
+  justify-content: space-between;
 }
 
 .tagred {
@@ -185,7 +231,7 @@ body {
   background-color: #9e54ba;
 }
 
-.whitering {
+.whiteRing {
   border: 1px solid white;
 }
 
@@ -223,13 +269,6 @@ body {
   position: relative;
   align-content: flex-start;
 }
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: #5e5e5e;
-  border-radius: 4px;
-}
 
 .todoElem {
   display: flex;
@@ -263,8 +302,4 @@ body {
 /* should be at last!!!! */
 .covered {
   visibility: hidden;
-}
-
-.underline {
-  border-bottom: 1px solid rgb(154, 154, 154);
 }
