@@ -1,13 +1,14 @@
-const toDoInput = document.querySelector("#todo_input");
-const addBtn = document.querySelector(".todo_input > p");
+const toDoInput = document.querySelector('#todo_input');
+const addBtn = document.querySelector('.todo_input > p');
 const toDoList = document.querySelector('.todo_list');
 const doneList = document.querySelector('.done_list');
 
-let toDoItem = [];
-let doneItem = [];
-
-function addTodo(event){
+function addToDo(event){
     event.preventDefault();
+    if(!toDoInput.value.trim()){
+        alert("할 일을 입력해주세요.");
+        return 0;
+    }
     let toDoLi = document.createElement("li");
     let toDoText = document.createElement('p');
     let deleteBtn = document.createElement('button');
@@ -22,7 +23,8 @@ function addTodo(event){
     toDoLi.appendChild(deleteBtn);
 
     toDoList.appendChild(toDoLi);
-    toDoItem.push(toDoText.innerText);
+    
+    toDoInput.value = '';
 }
 
 function delToDo(event){
@@ -42,7 +44,13 @@ function moveToDo(event){
     }
 }
 function init(){
-    addBtn.addEventListener("click", addTodo);
+    addBtn.addEventListener("click", addToDo);
+    toDoInput.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          addToDo(event);
+        }
+    });
 }
 
 init();
