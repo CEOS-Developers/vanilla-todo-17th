@@ -35,6 +35,10 @@ li {
   font-size: 15px;
   width: 85%;
 }
+#todo-list,
+#done-list {
+  padding-left: 10px;
+}
 .input-section {
   padding-bottom: 25px;
 }
