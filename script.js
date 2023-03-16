@@ -7,6 +7,8 @@ const createTodoItem = () => {
   todoList.innerHTML = ''; //todo 중복 방지 위한 초기화
   doneList.innerHTML = '';
 
+  countTodo(); //todo, done 개수 count 함수
+
   todoItemsList.forEach((item) => {
     const todoItem = document.createElement('li');
 
@@ -56,6 +58,15 @@ const removeTodo = (removeitem) => {
   );
   todoItemsList = Array.from(removedTodoList); //todoItemsList update
   createTodoItem();
+};
+
+const countTodo = () => {
+  //todo 개수 count
+  const countedTodo = document.getElementById('todo-count');
+  const countedDone = document.getElementById('done-count');
+
+  countedTodo.innerText = todoItemsList.filter((item) => !item.isDone).length;
+  countedDone.innerText = todoItemsList.filter((item) => item.isDone).length;
 };
 
 const toggleTodo = (toggleItem) => {
