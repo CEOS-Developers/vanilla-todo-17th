@@ -11,6 +11,18 @@ const doneList = document.querySelector('.done-box__items');
 let todoItems = [];
 let doneItems = [];
 
+//to-do 목록에 있는 아이템 카운트
+const todoCountItems = (todoItems) => {
+  const countNum = todoItems.length;
+  todoCount.innerText = `(${countNum})`;
+};
+
+//done 목록에 있는 아이템 카운트
+const doneCountItems = (doneItems) => {
+  const countNum = doneItems.length;
+  doneCount.innerText = `(${countNum})`;
+};
+
 //to-do 목록과 done 목록 간의 아이템 이동
 const toggleTodo = (e) => {
   const todoItemsId = todoItems.map((item) => item.id);
@@ -66,6 +78,8 @@ const renderDoneList = (doneItems) => {
     doneText.addEventListener('click', toggleTodo);
     deleteBtn.addEventListener('click', deleteTodo);
   });
+
+  doneCountItems(doneItems);
 };
 
 //to-do 목록 렌더링
@@ -92,6 +106,8 @@ const renderTodoList = (todoItems) => {
     todoText.addEventListener('click', toggleTodo);
     deleteBtn.addEventListener('click', deleteTodo);
   });
+
+  todoCountItems(todoItems);
 };
 
 //form 제출해서 to-do 목록에 추가
