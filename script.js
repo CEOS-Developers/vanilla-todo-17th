@@ -1,6 +1,10 @@
 let todoItemsList = []; //todoList, doneList 모두 포함
 
 const createTodoItem = () => {
+  const savedTodoList = localStorage.getItem('todoItemsList'); //로컬에서 가져오기
+
+  todoItemsList = JSON.parse(savedTodoList); //문자열을 객체로 변환
+
   const todoList = document.getElementById('todo-list');
   const doneList = document.getElementById('done-list');
 
@@ -47,6 +51,7 @@ const addTodo = (event) => {
   if (inputTodo.text) {
     todoItemsList = [...todoItemsList, inputTodo];
     document.getElementById('input-todo').value = ''; //입력 창 초기화
+    localStorage.setItem('todoItemsList', JSON.stringify(todoItemsList)); //로컬에 저장
     createTodoItem();
   }
 };
@@ -57,6 +62,7 @@ const removeTodo = (removeitem) => {
     (item) => item.text !== removeitem.target.parentNode.innerText.slice(0, -1)
   );
   todoItemsList = Array.from(removedTodoList); //todoItemsList update
+  localStorage.setItem('todoItemsList', JSON.stringify(todoItemsList)); //로컬에 저장
   createTodoItem();
 };
 
@@ -75,5 +81,8 @@ const toggleTodo = (toggleItem) => {
     (item) => item.text === toggleItem.target.innerText
   );
   toggledTodo.isDone = !toggledTodo.isDone; //isDone 상태 전환
+  localStorage.setItem('todoItemsList', JSON.stringify(todoItemsList)); //로컬에 저장
   createTodoItem();
 };
+
+window.onload = createTodoItem();
