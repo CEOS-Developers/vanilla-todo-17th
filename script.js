@@ -82,11 +82,11 @@ function todoElemGen(data, queryDiv) {
   let eslapsedTime = (new Date().getTime() - new Date(data.time)) / (1000 * 60);
   let classType = data.type.replace('tag', 'font');
   const todoTitleDiv = document.createElement('div');
-  todoTitleDiv.className = `todoTitle ${classType}`;
+  todoTitleDiv.className = `todoTitle`;
   todoTitleDiv.innerHTML = data.title;
 
   const todoTimeDiv = document.createElement('div');
-  todoTimeDiv.className = 'todoTime';
+  todoTimeDiv.className = `todoTime ${classType}`;
   todoTimeDiv.innerHTML = timeCalculate(eslapsedTime);
 
   todoElem.append(todoTitleDiv, todoTimeDiv);
@@ -218,7 +218,7 @@ function todoClickControler(e, todoElem, queryDiv) {
 }
 
 function moveToDoneList(todoElem) {
-  let typeElem = todoElem.children[0].classList[1].replace('font', 'tag');
+  let typeElem = todoElem.children[1].classList[1].replace('font', 'tag');
   let elemData = {
     title: todoElem.children[0].innerHTML,
     type: typeElem,
@@ -243,7 +243,7 @@ function moveToDoneList(todoElem) {
 }
 
 function moveToTodoList(todoElem) {
-  let typeElem = todoElem.children[0].classList[1].replace('font', 'tag');
+  let typeElem = todoElem.children[1].classList[1].replace('font', 'tag');
   let elemData = {
     title: todoElem.children[0].innerHTML,
     type: typeElem,

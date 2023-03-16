@@ -303,6 +303,7 @@ body {
 .todoTime {
   font-size: 14px;
   align-self: flex-end;
+  font-weight: 600;
 }
 
 .scrollRight {
