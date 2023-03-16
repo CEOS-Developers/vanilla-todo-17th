@@ -11,6 +11,22 @@ const doneList = document.querySelector('.done-box__items');
 let todoItems = [];
 let doneItems = [];
 
+//아이템 삭제
+const deleteTodo = (e) => {
+  const li = e.target.parentElement;
+  li.remove();
+
+  todoItems = todoItems.filter(
+    (item) => item.id !== parseInt(e.target.parentElement.id)
+  );
+  doneItems = doneItems.filter(
+    (item) => item.id !== parseInt(e.target.parentElement.id)
+  );
+
+  renderTodoList(todoItems);
+  renderDoneList(doneItems);
+};
+
 //done 목록 렌더링
 const renderDoneList = (doneItems) => {
   doneList.innerHTML = ''; //초기화
@@ -29,6 +45,8 @@ const renderDoneList = (doneItems) => {
     doneList.appendChild(li);
     li.appendChild(doneText);
     li.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener('click', deleteTodo);
   });
 };
 
@@ -50,6 +68,8 @@ const renderTodoList = (todoItems) => {
     todoList.appendChild(li);
     li.appendChild(todoText);
     li.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener('click', deleteTodo);
   });
 };
 
