@@ -1,0 +1,46 @@
+body {
+  background-color: rgb(186, 191, 225);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'GangwonEdu_OTFBoldA' !important;
+}
+main {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 650px;
+  width: 350px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 15px rgba(73, 71, 71, 0.5);
+}
+section {
+  padding: 0px 20px 15px 20px;
+}
+button {
+  border: none;
+  background: none;
+  font-size: 18px;
+  width: 30px;
+}
+li {
+  list-style: none;
+}
+#input-todo {
+  border: none;
+  background-color: rgb(205, 222, 241);
+  border-radius: 20px;
+  height: 35px;
+  font-size: 15px;
+  width: 85%;
+}
+.input-section {
+  padding-bottom: 25px;
+}
+.todo-section,
+.done-section {
+  flex: 0.5;
+  border-top: 2px solid rgb(177, 171, 171);
+  overflow: auto;
+}
