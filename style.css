@@ -60,9 +60,8 @@ body {
 }
 
 .card {
-  /* temporarilly disabled due to fast load 
-   animation: appear 1s 1s forwards cubic-bezier(0.8, 0, 0, 0.8);
-  opacity: 0; */
+  animation: appear 1s 1s forwards cubic-bezier(0.8, 0, 0, 0.8);
+  opacity: 0;
   width: 30vw;
   height: 48vw;
   min-width: 300px;
