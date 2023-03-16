@@ -60,8 +60,10 @@ body {
 }
 
 .card {
+  /*
+  로직이 꼬여서 지금은 없는게 나음 나중에 js로직 수정하면서 바꿀 것
   animation: appear 1s 1s forwards cubic-bezier(0.8, 0, 0, 0.8);
-  opacity: 0;
+  opacity: 0; */
   width: 30vw;
   height: 48vw;
   min-width: 300px;
