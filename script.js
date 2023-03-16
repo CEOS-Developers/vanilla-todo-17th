@@ -14,6 +14,7 @@ const createTodoItem = () => {
 
     const deleteButton = document.createElement('button');
     deleteButton.innerText = '✖';
+    deleteButton.className = 'delete-button';
 
     todoItem.appendChild(todoItemText);
     todoItem.appendChild(deleteButton);
