@@ -28,6 +28,8 @@ const createTodoItem = () => {
     }
 
     todoItemText.addEventListener('click', toggleTodo); //todo 클릭 시 toggle 함수
+
+    deleteButton.addEventListener('click', removeTodo); //x 버튼 클릭 시 todo 삭제 함수
   });
 };
 
@@ -45,6 +47,15 @@ const addTodo = (event) => {
     document.getElementById('input-todo').value = ''; //입력 창 초기화
     createTodoItem();
   }
+};
+
+const removeTodo = (removeitem) => {
+  //todo 삭제
+  const removedTodoList = todoItemsList.filter(
+    (item) => item.text !== removeitem.target.parentNode.innerText.slice(0, -1)
+  );
+  todoItemsList = Array.from(removedTodoList); //todoItemsList update
+  createTodoItem();
 };
 
 const toggleTodo = (toggleItem) => {
