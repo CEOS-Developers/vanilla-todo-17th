@@ -5,6 +5,7 @@ const createTodoItem = () => {
   const doneList = document.getElementById('done-list');
 
   todoList.innerHTML = ''; //todo 중복 방지 위한 초기화
+  doneList.innerHTML = '';
 
   todoItemsList.forEach((item) => {
     const todoItem = document.createElement('li');
@@ -25,6 +26,8 @@ const createTodoItem = () => {
     } else {
       doneList.appendChild(todoItem);
     }
+
+    todoItemText.addEventListener('click', toggleTodo); //todo 클릭 시 toggle 함수
   });
 };
 
@@ -42,4 +45,13 @@ const addTodo = (event) => {
     document.getElementById('input-todo').value = ''; //입력 창 초기화
     createTodoItem();
   }
+};
+
+const toggleTodo = (toggleItem) => {
+  //todo와 done 서로 toggle
+  const toggledTodo = todoItemsList.find(
+    (item) => item.text === toggleItem.target.innerText
+  );
+  toggledTodo.isDone = !toggledTodo.isDone; //isDone 상태 전환
+  createTodoItem();
 };
