@@ -11,6 +11,21 @@ const doneList = document.querySelector('.done-box__items');
 let todoItems = [];
 let doneItems = [];
 
+//to-do 목록과 done 목록 간의 아이템 이동
+const toggleTodo = (e) => {
+  const todoItemsId = todoItems.map((item) => item.id);
+
+  if (todoItemsId.includes(parseInt(e.target.id))) {
+    deleteTodo(e);
+    doneItems = [...doneItems, { text: e.target.textContent, id: Date.now() }];
+    renderDoneList(doneItems);
+  } else {
+    deleteTodo(e);
+    todoItems = [...todoItems, { text: e.target.textContent, id: Date.now() }];
+    renderTodoList(todoItems);
+  }
+};
+
 //아이템 삭제
 const deleteTodo = (e) => {
   const li = e.target.parentElement;
@@ -32,6 +47,8 @@ const renderDoneList = (doneItems) => {
   doneList.innerHTML = ''; //초기화
 
   doneItems.forEach((item) => {
+    //console.log(item);
+
     const li = document.createElement('li');
     li.id = item.id;
 
@@ -46,6 +63,7 @@ const renderDoneList = (doneItems) => {
     li.appendChild(doneText);
     li.appendChild(deleteBtn);
 
+    doneText.addEventListener('click', toggleTodo);
     deleteBtn.addEventListener('click', deleteTodo);
   });
 };
@@ -55,6 +73,8 @@ const renderTodoList = (todoItems) => {
   todoList.innerHTML = ''; //초기화
 
   todoItems.forEach((item) => {
+    //console.log(item);
+
     const li = document.createElement('li');
     li.id = item.id;
 
@@ -69,6 +89,7 @@ const renderTodoList = (todoItems) => {
     li.appendChild(todoText);
     li.appendChild(deleteBtn);
 
+    todoText.addEventListener('click', toggleTodo);
     deleteBtn.addEventListener('click', deleteTodo);
   });
 };
