@@ -55,6 +55,7 @@ body {
   align-items: center;
   background-image: url('./bg.jpg');
   position: relative;
+  font-family: 'Jua', sans-serif;
 }
 
 .card {
@@ -275,6 +276,12 @@ body {
   align-content: flex-start;
   overflow-x: hidden;
 }
+#todoDiv {
+  font-family: 'Single Day', cursive;
+}
+#doneDiv {
+  font-family: 'Poor Story', cursive;
+}
 
 .todoElem {
   display: flex;
@@ -296,6 +303,7 @@ body {
   min-height: 24px;
   white-space: nowrap;
   overflow-x: hidden;
+  overflow-y: hidden;
   text-overflow: ellipsis;
   font-size: 20px;
   font-weight: 800;
