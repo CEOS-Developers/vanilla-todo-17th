@@ -17,37 +17,6 @@
   }
 }
 
-@keyframes lightSpeedInLeft {
-  from {
-    transform: translate3d(-100%, 0, 0) skewX(30deg);
-    opacity: 0;
-  }
-
-  60% {
-    transform: skewX(-20deg);
-    opacity: 1;
-  }
-
-  80% {
-    transform: skewX(5deg);
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes lightSpeedOutRight {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    transform: translate3d(100%, 0, 0) skewX(30deg);
-    opacity: 0;
-  }
-}
-
 /* variables */
 ::-webkit-scrollbar {
   width: 4px;
@@ -55,6 +24,18 @@
 ::-webkit-scrollbar-thumb {
   background-color: #5e5e5e;
   border-radius: 4px;
+}
+
+:root {
+  --red-button: #ff605c;
+  --yellow-button: #ffbd44;
+  --green-button: #00ca4e;
+  --red-tag: #e84b31;
+  --blue-tag: #3476e1;
+  --orange-tag: #de8b32;
+  --yellow-tag: #e5bd3f;
+  --green-tag: #56b83d;
+  --purple-tag: #9e54ba;
 }
 
 /* styles */
@@ -77,8 +58,8 @@ body {
 }
 
 .card {
-  /* temporarilly disabled due to fast load */
-  /* animation: appear 1s 1s forwards cubic-bezier(0.8, 0, 0, 0.8);
+  /* temporarilly disabled due to fast load 
+   animation: appear 1s 1s forwards cubic-bezier(0.8, 0, 0, 0.8);
   opacity: 0; */
   width: 30vw;
   height: 48vw;
@@ -114,15 +95,15 @@ body {
   border-radius: 50%;
 }
 .red {
-  background-color: #ff605c;
+  background-color: var(--red-button);
 }
 
 .yellow {
-  background-color: #ffbd44;
+  background-color: var(--yellow-button);
 }
 
 .green {
-  background-color: #00ca4e;
+  background-color: var(--green-button);
 }
 
 .plusBtn {
@@ -207,32 +188,56 @@ body {
   justify-content: space-between;
 }
 
-.tagred {
-  background-color: #e84b31;
+.tagRed {
+  background-color: var(--red-tag);
 }
 
-.blue {
-  background-color: #3476e1;
+.tagBlue {
+  background-color: var(--blue-tag);
 }
 
-.orange {
-  background-color: #de8b32;
+.tagOrange {
+  background-color: var(--orange-tag);
 }
 
-.tagyellow {
-  background-color: #e5bd3f;
+.tagYellow {
+  background-color: var(--yellow-tag);
 }
 
-.taggreen {
-  background-color: #56b83d;
+.tagGreen {
+  background-color: var(--green-tag);
 }
 
-.purple {
-  background-color: #9e54ba;
+.tagPurple {
+  background-color: var(--purple-tag);
 }
 
 .whiteRing {
   border: 1px solid white;
+}
+
+.fontRed {
+  color: var(--red-tag);
+}
+
+.fontBlue {
+  color: var(--blue-tag);
+}
+
+.fontOrange {
+  color: var(--orange-tag);
+}
+
+.fontYellow {
+  color: var(--yellow-tag);
+}
+
+.fontGreen {
+  color: var(--green-tag);
+}
+
+.fontPurple {
+  color: var(--purple-tag);
 }
 
 .submitBtn {
