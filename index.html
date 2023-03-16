@@ -3,12 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <title>Vanilla Todo</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="card">
+        <div class="toolbar">
+          <div class="circleDiv">
+            <span class="red circle"></span>
+          </div>
+          <div class="circleDiv">
+            <span class="yellow circle"></span>
+          </div>
+          <div class="circleDiv">
+            <span class="green circle"></span>
+          </div>
+          <div class="plusBtn">+</div>
+        </div>
+        <!-- toolbar fin -->
+        <div class="mainDiv">
+          <form class="hoverDiv">
+            <div class="hoverTitle">TODO</div>
+            <input
+              type="text"
+              placeholder="할 일을 입력하세요"
+              class="customInput"
+            />
+            <div class="tagDiv">
+              <div class="circleDiv">
+                <span class="tagRed circle whiteRing"></span>
+              </div>
+              <div class="circleDiv">
+                <span class="tagBlue circle"></span>
+              </div>
+              <div class="circleDiv">
+                <span class="tagOrange circle"></span>
+              </div>
+              <div class="circleDiv">
+                <span class="tagYellow circle"></span>
+              </div>
+              <div class="circleDiv">
+                <span class="tagGreen circle"></span>
+              </div>
+              <div class="circleDiv">
+                <span class="tagPurple circle"></span>
+              </div>
+            </div>
+            <button class="submitBtn">추가</button>
+          </form>
+          <span class="todoWord">TODO</span>
+          <div class="todoDiv" id="todoDiv">
+            <div class="todoElem" id="todoPlaceHolder">
+              <div class="todoTitle">PRESS + ON THE TOP BAR</div>
+              <div class="todoTime">to add todo...</div>
+            </div>
+          </div>
+          <span class="todoWord">DONE</span>
+          <div class="todoDiv" id="doneDiv">
+            <div class="todoElem" id="todoPlaceHolder2">
+              <div class="todoTitle">CLICK LEFT TWICE</div>
+              <div class="todoTime">to delete todo...</div>
+            </div>
+            <div class="todoElem" id="todoPlaceHolder3">
+              <div class="todoTitle">CLICK RIGHT TWICE</div>
+              <div class="todoTime">to complete todo...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
