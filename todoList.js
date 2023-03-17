@@ -73,16 +73,19 @@ const handleSubmit = (e) => {
   e.preventDefault();
 
   const newTodo = todoInput.value;
-  const newTodoObject = {
-    id: Date.now(),
-    text: newTodo,
-  };
-  todos.push(newTodoObject);
-  saveTodos();
 
-  displayNewTodo(newTodoObject);
+  if (newTodo.length !== 0) {
+    // 입력 없는 경우 처리
+    const newTodoObject = {
+      id: Date.now(),
+      text: newTodo,
+    };
 
-  todoInput.value = '';
+    todos.push(newTodoObject);
+    saveTodos();
+    displayNewTodo(newTodoObject);
+    todoInput.value = '';
+  }
 };
 
 todoForm.addEventListener('submit', handleSubmit);
