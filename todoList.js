@@ -1,13 +1,20 @@
 const todoForm = document.getElementById('input-form');
 const todoInput = document.querySelector('#input-form input');
 const addTodoButton = document.getElementsByClassName('add-button')[0];
-const todoLists = document.querySelector('.todo-lists div');
-const doneLists = document.querySelector('.done-lists div');
+const todoLists = document.querySelector('.todo-lists .list-container');
+const doneLists = document.querySelector('.done-lists .list-container');
+const numOfTodos = document.getElementById('numOfTodos');
+const numOfDones = document.getElementById('numOfDones');
 
 let todos = [];
 let doneTodos = [];
 const TODOS = 'todos';
 const DONETODOS = 'doneTodos';
+
+const displayNum = () => {
+  numOfTodos.innerText = todos.length;
+  numOfDones.innerText = doneTodos.length;
+};
 
 const saveTodos = () => {
   localStorage.setItem(TODOS, JSON.stringify(todos));
@@ -27,6 +34,7 @@ const removeTodo = (e) => {
     doneTodos = doneTodos.filter((todo) => todo.id != div.id);
     saveTodos();
     saveDoneTodos();
+    displayNum();
   } else {
   }
 };
@@ -47,6 +55,7 @@ const moveToDoneTodo = (e) => {
     doneTodos = doneTodos.concat(doneTodoObject);
     saveTodos();
     saveDoneTodos();
+    displayNum();
   } else {
   }
 };
@@ -67,6 +76,7 @@ const moveToTodos = (e) => {
     todos = todos.concat(todoObject);
     saveTodos();
     saveDoneTodos();
+    displayNum();
   } else {
   }
 };
@@ -84,6 +94,7 @@ const displayNewTodo = (newTodo) => {
   div.appendChild(span);
   div.appendChild(btn);
   todoLists.appendChild(div);
+  displayNum();
 };
 
 const displayDoneTodo = (doneTodo) => {
@@ -107,7 +118,6 @@ const handleSubmit = (e) => {
   const newTodo = todoInput.value;
 
   if (newTodo.length !== 0) {
-    // 입력 없는 경우 처리
     const newTodoObject = {
       id: Date.now(),
       text: newTodo,
@@ -117,6 +127,7 @@ const handleSubmit = (e) => {
     saveTodos();
     displayNewTodo(newTodoObject);
     todoInput.value = '';
+    // numOfTodos.innerText = todos.length;
   }
 };
 
@@ -137,3 +148,5 @@ if (localDoneTodos) {
   doneTodos = savedDoneTodos;
   savedDoneTodos.forEach(displayDoneTodo);
 }
+
+displayNum();
