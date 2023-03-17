@@ -24,6 +24,7 @@ body{
 
 .title h1{
     font-size : 2em;
+    user-select : none;
 }
 
 .todo_input{
@@ -36,6 +37,7 @@ body{
 .todo_input input{
     width:100%;
 }
+
 .todo_input p{
     line-height: 25px;
     font-size:20px;
@@ -44,7 +46,30 @@ body{
 
 .todo{
     flex:1;
+    overflow : auto;
 }
+
+span{
+    user-select: none;
+}
+li {
+    line-height: 25px;
+    cursor : pointer;
+}
+
+li:hover button {
+  opacity: 1;
+}
+
+li button {
+    background-color:transparent;
+    border : none;
+    opacity: 0;
+    float:right;
+    transition: opacity 0.5s ease;
+}
+
 .done{
     flex:1;
+    overflow:auto;
 }

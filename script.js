@@ -17,7 +17,7 @@ function makeLi(value){
     toDoText.innerText = value;
     toDoText.addEventListener("click",moveToDo);
 
-    deleteBtn.innerText = "X";
+    deleteBtn.innerText = "🗑";
     deleteBtn.addEventListener("click",delToDo);
 
     toDoLi.appendChild(toDoText);
