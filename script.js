@@ -63,13 +63,16 @@ const renderDoneList = (doneItems) => {
 
     const li = document.createElement('li');
     li.id = item.id;
+    li.className = 'item-list';
 
     const doneText = document.createElement('span');
     doneText.innerText = item.text;
     doneText.id = item.id;
+    doneText.className = 'item';
 
     const deleteBtn = document.createElement('button');
     deleteBtn.innerText = '❌';
+    deleteBtn.className = 'deletebtn';
 
     doneList.appendChild(li);
     li.appendChild(doneText);
@@ -91,13 +94,16 @@ const renderTodoList = (todoItems) => {
 
     const li = document.createElement('li');
     li.id = item.id;
+    li.className = 'item-list';
 
     const todoText = document.createElement('span');
     todoText.innerText = item.text;
     todoText.id = item.id;
+    todoText.className = 'item';
 
     const deleteBtn = document.createElement('button');
     deleteBtn.innerText = '❌';
+    deleteBtn.className = 'deletebtn';
 
     todoList.appendChild(li);
     li.appendChild(todoText);

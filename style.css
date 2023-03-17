@@ -1,9 +1,17 @@
+@font-face {
+  font-family: 'S-CoreDream-3Light';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'S-CoreDream-3Light';
   margin: 0;
   cursor: default;
   background-color: aquamarine;
@@ -32,7 +40,7 @@ h2 {
 
 .container {
   background-color: white;
-  border-radius: 8%;
+  border-radius: 3rem;
   width: 24rem;
   height: 33rem;
   box-shadow: 0px 0px 5px #444;
@@ -42,22 +50,48 @@ h2 {
 }
 
 .title {
-  padding: 5px;
+  padding: 0;
+  padding-top: 10px;
   flex-basis: 10%;
   text-align: center;
 }
 
 .input-box {
-  border-bottom: 1px solid black;
-  padding: 15px;
+  border-bottom: 1px solid rgb(199, 199, 199);
+  padding: 10px 15px;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   flex-basis: 10%;
 }
 
+.input-box__input {
+  border: 1px solid rgb(179, 177, 177);
+  border-radius: 6px;
+  width: 250px;
+  height: 27px;
+}
+
+.input-box__input:focus,
+.input-box__input:active {
+  outline: none;
+}
+
+.input-box__input::placeholder {
+  text-align: center;
+  font-family: 'S-CoreDream-3Light';
+}
+
+.input-box__btn {
+  padding: 3px;
+  margin-left: 8px;
+  background-color: rgb(35, 35, 35);
+  border-radius: 5px;
+}
+
 .todo-box {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(199, 199, 199);
   padding: 15px;
 
   flex-basis: 40%;
@@ -67,4 +101,17 @@ h2 {
   padding: 15px;
 
   flex-basis: 40%;
+}
+
+.todo-box__count,
+.done-box__count {
+  margin-left: 5px;
+}
+
+.todo-box__items,
+.done-box__items {
+  cursor: pointer;
+  padding: 0;
+  padding-left: 15px;
+  overflow: auto;
 }
