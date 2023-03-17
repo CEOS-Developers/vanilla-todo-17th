@@ -4,7 +4,7 @@ class Todo {
     this.list = [];
   }
   getNewId() {
-    return this.list.length + 1;
+    return new Date().valueOf();
   }
   getListItem(id) {
     return this.list.filter((item) => item.id === id)[0];
