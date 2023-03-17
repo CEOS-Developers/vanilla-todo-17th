@@ -1,5 +1,6 @@
 const todoForm = document.getElementById('input-form');
 const todoInput = document.querySelector('#input-form input');
+const addTodoButton = document.getElementsByClassName('add-button')[0];
 const todoLists = document.querySelector('.todo-lists div');
 const doneLists = document.querySelector('.done-lists div');
 
@@ -85,3 +86,4 @@ const handleSubmit = (e) => {
 };
 
 todoForm.addEventListener('submit', handleSubmit);
+addTodoButton.addEventListener('click', handleSubmit);

@@ -51,6 +51,7 @@
 .add-button {
   margin: auto 0 auto auto;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .todo-lists {
