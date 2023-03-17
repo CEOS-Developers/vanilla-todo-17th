@@ -124,8 +124,8 @@ function moveToDo(event){
 function init(){
     renderLists();
     addBtn.addEventListener("click", addToDo);
-    toDoInput.addEventListener("keypress", function (event) {
-        if (event.keyCode === 13) {
+    toDoInput.addEventListener("keydown", function (event) {
+        if (event.keyCode === 13 && !event.isComposing) {
           event.preventDefault();
           addToDo(event);
         }
