@@ -37,6 +37,17 @@ const doneList = document.getElementById('done-list');
 const inputValue = document.getElementById('input');
 const addButton = document.getElementById(ADD_BUTTON);
 
+function toggleTodoItem(e) {
+  const id = parseInt(e.currentTarget.id);
+  myTodoList.toggleStatus(id);
+  repaintUI(e, id);
+}
+
+function repaintUI(e, id) {
+  createListUI(id);
+  removeListUI(e);
+}
+
 function removeListUI(e) {
   let parentLi = e.target.parentElement;
 
