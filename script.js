@@ -68,6 +68,7 @@ function dltList(){
     reloadSum();
 }
 
+// todoList에서 완료 버튼을 누르면 doneList로 테이블을 옮겨주는 함수
 function doneList(){
     this.parentElement.parentElement.remove();
     var tdText=this.parentElement.parentElement.innerText;
