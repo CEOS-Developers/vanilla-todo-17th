@@ -87,3 +87,18 @@ const handleSubmit = (e) => {
 
 todoForm.addEventListener('submit', handleSubmit);
 addTodoButton.addEventListener('click', handleSubmit);
+
+// localStorage 저장된 기존 todos, doneTodos display
+const localTodos = localStorage.getItem('todos');
+const localDoneTodos = localStorage.getItem('doneTodos');
+
+if (localTodos) {
+  const savedTodos = JSON.parse(localTodos);
+  todos = savedTodos;
+  savedTodos.forEach(displayNewTodo);
+}
+if (localDoneTodos) {
+  const savedDoneTodos = JSON.parse(localDoneTodos);
+  doneTodos = savedDoneTodos;
+  savedDoneTodos.forEach(displayDoneTodo);
+}
