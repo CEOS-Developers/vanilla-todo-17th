@@ -113,6 +113,7 @@ function reloadSum(){
 
 }
 
+//각각 초기화 화살표 이미지를 누르면 해당하는 테이블의 child 값을 모두 삭제해주는 함수(전체삭제)
 function reloadTodo(){
     var list = document.getElementById("todoTableBody");
     while(list.firstChild){
