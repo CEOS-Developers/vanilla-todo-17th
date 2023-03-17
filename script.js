@@ -62,6 +62,7 @@ function todoList(todoStr){
     reloadSum();
 }
 
+// 'X' 버튼을 누르면 해당 테이블 열을 삭제시켜주는 함수
 function dltList(){
     this.parentElement.parentElement.remove();
     reloadSum();
