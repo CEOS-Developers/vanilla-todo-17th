@@ -10,10 +10,6 @@ body{
 }
 
 .container{
-    background-color: white;
-    width:300px; 
-    height:600px;
-    border-radius : 40px;
     display:flex;
     flex-direction: column;
 }
@@ -28,6 +24,10 @@ body{
 }
 
 .todo_input{
+    width:300px;
+    height:50px;
+    background-color: rgba( 255, 255, 255, 0.8);
+    border-radius: 10px;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +35,8 @@ body{
 }
 
 .todo_input input{
-    width:100%;
+    width : 80%;
+    padding:5px;
 }
 
 .todo_input p{
@@ -44,32 +45,53 @@ body{
     cursor:pointer;
 }
 
+.wrap_content{
+    display:flex;
+    flex-direction: column;
+    width:300px;
+    height:500px;
+    background-color: rgba( 255, 255, 255, 0.8);
+    border-radius: 10px;
+}
 .todo{
     flex:1;
     overflow : auto;
+    padding:10px;
 }
 
-span{
+.wrap_content .sub_title{
     user-select: none;
+    font-size:25px;
 }
-li {
+
+ul li {
+    display:flex;
     line-height: 25px;
     cursor : pointer;
+    padding:10px;
+}
+ul li span{
+    flex:1;
+}
+ul li:hover button {
+    opacity: 1;
 }
 
-li:hover button {
-  opacity: 1;
-}
-
-li button {
+ul li button {
     background-color:transparent;
     border : none;
     opacity: 0;
-    float:right;
     transition: opacity 0.5s ease;
 }
-
+hr.line{
+    border: 0;
+    padding: 0;
+    margin: 10px;
+    border-bottom: 2px dashed #4d3d3d;
+    background: #999;
+}
 .done{
     flex:1;
     overflow:auto;
+    padding:10px;
 }

@@ -59,8 +59,8 @@ function storeLists(){
 
 // todo, done item 개수를 갱신하는 함수
 function returnLen(){
-    toDoLen.innerHTML =  `할 일 : ${toDoSpan.length}개`;
-    doneLen.innerHTML = `한 일 : ${doneSpan.length}개`;
+    toDoLen.innerHTML =  `To Do ! : ${toDoSpan.length}`;
+    doneLen.innerHTML = `Done ! : ${doneSpan.length}`;
 }
 
 // todo목록에 item을 추가하는 함수
