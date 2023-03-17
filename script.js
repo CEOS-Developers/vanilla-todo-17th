@@ -57,10 +57,13 @@ function storeLists(){
     localStorage.setItem("toDoObject",JSON.stringify(toDoObject));
 }
 
+// todo, done item 개수를 갱신하는 함수
 function returnLen(){
     toDoLen.innerHTML =  `할 일 : ${toDoLi.length}개`;
     doneLen.innerHTML = `한 일 : ${doneLi.length}개`;
 }
+
+// todo목록에 item을 추가하는 함수
 function addToDo(event){
     event.preventDefault();
     if(!toDoInput.value){
@@ -74,6 +77,7 @@ function addToDo(event){
     storeLists();
 }
 
+// 항목을 삭제하는 함수
 function delToDo(event){
     let deleteItem = event.target.parentElement;
     let removedItem = deleteItem.parentElement.removeChild(deleteItem);
@@ -82,6 +86,7 @@ function delToDo(event){
     return removedItem;
 }
 
+// 항목 클릭 시 반대편으로 이동시키는 함수
 function moveToDo(event){
     let moveItem = event.target.parentElement;
     let parentClass = moveItem.parentElement.className;
@@ -94,6 +99,8 @@ function moveToDo(event){
     returnLen();
     storeLists();
 }
+
+// 처음 실행 함수
 function init(){
     renderLists();
     addBtn.addEventListener("click", addToDo);
