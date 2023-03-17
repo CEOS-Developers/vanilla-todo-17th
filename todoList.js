@@ -5,6 +5,14 @@ const doneLists = document.querySelector('.done-lists div');
 
 let todos = [];
 
+const deleteTodo = (e) => {
+  const div = e.target.parentElement;
+  div.remove();
+
+  todos = todos.filter((todo) => todo.id != div.id);
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
 const displayNewTodo = (newTodo) => {
   const div = document.createElement('div');
   const span = document.createElement('span');
@@ -12,6 +20,7 @@ const displayNewTodo = (newTodo) => {
   div.id = newTodo.id;
   span.innerText = newTodo.text;
   btn.innerText = '✔';
+  btn.addEventListener('click', deleteTodo);
 
   div.appendChild(span);
   div.appendChild(btn);
