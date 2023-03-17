@@ -17,44 +17,56 @@ const saveDoneTodos = () => {
 
 const removeTodo = (e) => {
   const div = e.target.parentElement;
-  div.remove();
+  const isConfirmed = confirm('이 할 일을 지울까요?');
+  if (isConfirmed) {
+    div.remove();
 
-  todos = todos.filter((todo) => todo.id != div.id);
-  doneTodos = doneTodos.filter((todo) => todo.id != div.id);
-  saveTodos();
-  saveDoneTodos();
+    todos = todos.filter((todo) => todo.id != div.id);
+    doneTodos = doneTodos.filter((todo) => todo.id != div.id);
+    saveTodos();
+    saveDoneTodos();
+  } else {
+  }
 };
 
 const moveToDoneTodo = (e) => {
   const div = e.target.parentElement;
-  const doneTodoObject = {
-    id: div.id,
-    text: e.target.innerText,
-  };
+  const isConfirmed = confirm('할 일을 완료하셨나요?');
+  if (isConfirmed) {
+    const doneTodoObject = {
+      id: div.id,
+      text: e.target.innerText,
+    };
 
-  div.remove();
-  displayDoneTodo(doneTodoObject);
+    div.remove();
+    displayDoneTodo(doneTodoObject);
 
-  todos = todos.filter((todo) => todo.id != div.id);
-  doneTodos = doneTodos.concat(doneTodoObject);
-  saveTodos();
-  saveDoneTodos();
+    todos = todos.filter((todo) => todo.id != div.id);
+    doneTodos = doneTodos.concat(doneTodoObject);
+    saveTodos();
+    saveDoneTodos();
+  } else {
+  }
 };
 
 const moveToTodos = (e) => {
   const div = e.target.parentElement;
-  const todoObject = {
-    id: div.id,
-    text: e.target.innerText,
-  };
+  const isConfirmed = confirm('할 일 목록으로 옮길까요?');
+  if (isConfirmed) {
+    const todoObject = {
+      id: div.id,
+      text: e.target.innerText,
+    };
 
-  div.remove();
-  displayNewTodo(todoObject);
+    div.remove();
+    displayNewTodo(todoObject);
 
-  doneTodos = doneTodos.filter((todo) => todo.id != div.id);
-  todos = todos.concat(todoObject);
-  saveTodos();
-  saveDoneTodos();
+    doneTodos = doneTodos.filter((todo) => todo.id != div.id);
+    todos = todos.concat(todoObject);
+    saveTodos();
+    saveDoneTodos();
+  } else {
+  }
 };
 
 const displayNewTodo = (newTodo) => {
