@@ -9,6 +9,7 @@ document.getElementById('reloadAll_dn').addEventListener('click', reloadDone);
 
 reloadSum();
 
+//텍스트를 받아 삭제 버튼을 포함한 테이블의 한 행을 만들어주는 함수
 function addList(todoStr){
     var tr=document.createElement('tr');
     var td_txt=document.createElement('td');
