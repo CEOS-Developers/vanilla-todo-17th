@@ -11,16 +11,9 @@ const doneList = document.querySelector('.done-box__items');
 let todoItems = [];
 let doneItems = [];
 
-//to-do 목록에 있는 아이템 카운트
-const todoCountItems = (todoItems) => {
-  const countNum = todoItems.length;
-  todoCount.innerText = `(${countNum})`;
-};
-
-//done 목록에 있는 아이템 카운트
-const doneCountItems = (doneItems) => {
-  const countNum = doneItems.length;
-  doneCount.innerText = `(${countNum})`;
+//아이템 수 카운트하는 함수
+const countItems = (items, countName) => {
+  countName.innerText = `(${items.length})`;
 };
 
 //to-do 목록과 done 목록 간의 아이템 이동
@@ -54,66 +47,43 @@ const deleteTodo = (e) => {
   renderDoneList(doneItems);
 };
 
-//done 목록 렌더링
-const renderDoneList = (doneItems) => {
-  doneList.innerHTML = ''; //초기화
+//목록 렌더링 함수
+const renderList = (items, listName, countName) => {
+  listName.innerHTML = ''; //초기화
 
-  doneItems.forEach((item) => {
-    //console.log(item);
-
+  items.forEach((item) => {
     const li = document.createElement('li');
     li.id = item.id;
     li.className = 'item-list';
 
-    const doneText = document.createElement('span');
-    doneText.innerText = item.text;
-    doneText.id = item.id;
-    doneText.className = 'item';
+    const itemText = document.createElement('span');
+    itemText.innerText = item.text;
+    itemText.id = item.id;
+    itemText.className = 'item';
 
     const deleteBtn = document.createElement('button');
     deleteBtn.innerText = '❌';
     deleteBtn.className = 'deletebtn';
 
-    doneList.appendChild(li);
-    li.appendChild(doneText);
+    listName.appendChild(li);
+    li.appendChild(itemText);
     li.appendChild(deleteBtn);
 
-    doneText.addEventListener('click', toggleTodo);
+    itemText.addEventListener('click', toggleTodo);
     deleteBtn.addEventListener('click', deleteTodo);
   });
 
-  doneCountItems(doneItems);
+  countItems(items, countName);
+};
+
+//done 목록 렌더링
+const renderDoneList = (doneItems) => {
+  renderList(doneItems, doneList, doneCount);
 };
 
 //to-do 목록 렌더링
 const renderTodoList = (todoItems) => {
-  todoList.innerHTML = ''; //초기화
-
-  todoItems.forEach((item) => {
-    //console.log(item);
-
-    const li = document.createElement('li');
-    li.id = item.id;
-    li.className = 'item-list';
-
-    const todoText = document.createElement('span');
-    todoText.innerText = item.text;
-    todoText.id = item.id;
-    todoText.className = 'item';
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.innerText = '❌';
-    deleteBtn.className = 'deletebtn';
-
-    todoList.appendChild(li);
-    li.appendChild(todoText);
-    li.appendChild(deleteBtn);
-
-    todoText.addEventListener('click', toggleTodo);
-    deleteBtn.addEventListener('click', deleteTodo);
-  });
-
-  todoCountItems(todoItems);
+  renderList(todoItems, todoList, todoCount);
 };
 
 //form 제출해서 to-do 목록에 추가
