@@ -1,0 +1,121 @@
+@import "reset.css";
+@font-face {
+    font-family: 'KCC-Ganpan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    /* background-color : cornflowerblue */
+    background-image: url('bonobono.jpg');
+    background-size: cover;
+    width:100vw;
+    height:100vh;
+    display : flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    display:flex;
+    flex-direction: column;
+}
+
+.title{
+    width:400px;
+    margin-bottom : 20px;
+}
+
+.title h1{
+    font-family: 'KCC-Ganpan';
+    font-size : 2em;
+    text-align : center;
+    user-select : none;
+}
+
+.todo_input{
+    width:400px;
+    height:60px;
+    background-color: rgba( 255, 255, 255, 0.8);
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:20px;
+}
+
+.todo_input input{
+    width : 80%;
+    padding:5px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+.todo_input input:focus {
+    border: 3px solid #555;
+}
+.todo_input p{
+    padding-left : 10px;
+    line-height: 30px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.wrap_content{
+    display:flex;
+    flex-direction: column;
+    width:400px;
+    height:500px;
+    background-color: rgba( 255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+.todo{
+    flex:1;
+    overflow : auto;
+    padding:10px;
+}
+
+.wrap_content .sub_title{
+    user-select: none;
+    font-size:25px;
+    font-family: 'KCC-Ganpan';
+}
+
+ul li {
+    display:flex;
+    line-height: 25px;
+    cursor : pointer;
+    padding:10px;
+}
+ul li span{
+    flex:1;
+}
+ul li:hover button {
+    opacity: 1;
+}
+
+ul li button {
+    background-color:transparent;
+    border : none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+hr.line{
+    border: 0;
+    padding: 0;
+    margin: 10px;
+    border-bottom: 2px dashed #4d3d3d;
+    background: #999;
+}
+.done{
+    flex:1;
+    overflow:auto;
+    padding:10px;
+}
+
+.done ul li span{
+    text-decoration: line-through;
+}

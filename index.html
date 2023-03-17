@@ -8,7 +8,28 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="title">
+        <h1 id="time">Todo List</h1>
+      </div>
+      <div class="todo_input">
+        <input type="text" id="todo_input" placeholder="할 일을 입력해주세요" autofocus>
+        <p>+</p>
+      </div>
+      <div class="wrap_content">
+        <div class="todo">
+          <span class = "sub_title" id = "todo_len">To Do ! : 0</span>
+          <ul class="todo_list">
+          </ul>
+        </div>
+        <hr class="line">
+        <div class="done">
+          <span class = "sub_title" id = "done_len">Done ! : 0</span>
+          <ul class="done_list">
+          </ul>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
