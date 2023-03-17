@@ -1,7 +1,7 @@
 const todoForm = document.getElementById('input-form');
 const todoInput = document.querySelector('#input-form input');
-const todoLists = document.getElementsByClassName('todo-lists')[0];
-const doneLists = document.getElementsByClassName('done-lists')[0];
+const todoLists = document.querySelector('.todo-lists div');
+const doneLists = document.querySelector('.done-lists div');
 
 let todos = [];
 

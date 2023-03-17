@@ -59,10 +59,18 @@
   flex-direction: column;
 }
 
+.todo-lists div {
+  overflow: auto;
+}
+
 .done-lists {
   height: 34%;
   display: flex;
   flex-direction: column;
+}
+
+.done-lists div {
+  overflow: auto;
 }
 
 hr {
