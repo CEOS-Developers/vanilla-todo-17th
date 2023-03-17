@@ -9,6 +9,7 @@ const inputTag = document.querySelector('.customInput');
 const tagList = document.querySelectorAll('.tagDiv > div > span');
 const staticHolder = document.querySelectorAll('.staticHolder');
 const todoPlaceHolder = document.getElementById('todoPlaceHolder');
+const todoWord = document.querySelectorAll('.todoWord');
 
 // variables
 const tagNames = [
@@ -28,6 +29,7 @@ submitBtn.addEventListener('click', handleSubmitClick);
 staticHolder.forEach((holder) =>
   holder.addEventListener('click', handleStaticClick)
 );
+
 // Event Handlers
 function handlePlusIconClick() {
   mainDiv.classList.toggle('covered');
@@ -72,6 +74,16 @@ function handleStaticClick() {
 }
 
 //  functions
+function listCounter() {
+  const todoList = JSON.parse(localStorage.getItem('todoList')) ?? [];
+  const doneList = JSON.parse(localStorage.getItem('doneList')) ?? [];
+  const todoCount = todoList.length;
+  const doneCount = doneList.length;
+
+  todoWord[0].textContent = `TODO [${todoCount}개]`;
+  todoWord[1].textContent = `DONE [${doneCount}개]`;
+}
+
 function inputValidation() {
   inputTag.value = inputTag.value.trim();
   inputTag.value = inputTag.value.replace(/\s+/g, ' ');
@@ -135,10 +147,12 @@ function renderList(container, listName) {
 function render() {
   renderList(todoDiv, 'todoList');
   renderList(doneDiv, 'doneList');
+  listCounter();
 
   setInterval(() => {
     renderList(todoDiv, 'todoList');
     renderList(doneDiv, 'doneList');
+    listCounter();
   }, 30000);
 }
 
