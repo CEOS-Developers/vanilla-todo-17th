@@ -15,7 +15,12 @@
       <div class="todo-input">
         <form id="input-form">
           <div class="input-bg"></div>
-          <input id="input-text" type="text" placeholder="type here ..." />
+          <input
+            id="input-text"
+            type="text"
+            placeholder="type here ..."
+            maxlength="15"
+          />
         </form>
         <span class="add-button">+</span>
       </div>
@@ -24,14 +29,14 @@
 
       <div class="todo-lists">
         <span>📂 To Do</span>
-        <div></div>
+        <div class="list-container"></div>
       </div>
 
       <hr />
 
       <div class="done-lists">
         <span>🎉 Done</span>
-        <div></div>
+        <div class="list-container"></div>
       </div>
     </div>
   </body>

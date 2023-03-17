@@ -47,7 +47,7 @@ const displayNewTodo = (newTodo) => {
   const btn = document.createElement('button');
   div.id = newTodo.id;
   span.innerText = newTodo.text;
-  btn.innerText = '✔';
+  btn.innerText = '✅';
   btn.addEventListener('click', deleteTodo);
 
   div.appendChild(span);
