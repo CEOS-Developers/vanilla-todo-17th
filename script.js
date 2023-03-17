@@ -37,6 +37,16 @@ const doneList = document.getElementById('done-list');
 const inputValue = document.getElementById('input');
 const addButton = document.getElementById(ADD_BUTTON);
 
+function removeListUI(e) {
+  let parentLi = e.target.parentElement;
+
+  if (parentLi.tagName === UL) {
+    parentLi = parentLi.firstChild;
+  }
+  parentLi.remove();
+  e.stopPropagation();
+}
+
 function createListUI(id) {
   let curList =
     myTodoList.getListItem(id).status === TODO ? todoList : doneList;
