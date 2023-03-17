@@ -6,6 +6,14 @@ const doneLists = document.querySelector('.done-lists div');
 let todos = [];
 let doneTodos = [];
 
+const saveTodos = () => {
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
+const saveDoneTodos = () => {
+  localStorage.setItem('doneTodos', JSON.stringify(doneTodos));
+};
+
 const deleteTodo = (e) => {
   const div = e.target.parentElement;
   const doneTodoObject = {
@@ -16,9 +24,9 @@ const deleteTodo = (e) => {
   div.remove();
 
   todos = todos.filter((todo) => todo.id != div.id);
-  localStorage.setItem('todos', JSON.stringify(todos));
+  saveTodos();
   doneTodos = doneTodos.concat(doneTodoObject);
-  localStorage.setItem('doneTodos', JSON.stringify(doneTodos));
+  saveDoneTodos();
 
   displayDoneTodo(doneTodoObject);
 };
@@ -29,7 +37,7 @@ const deleteDoneTodo = (e) => {
   div.remove();
 
   doneTodos = doneTodos.filter((todo) => todo.id != div.id);
-  localStorage.setItem('doneTodos', JSON.stringify(doneTodos));
+  saveDoneTodos();
 };
 
 const displayNewTodo = (newTodo) => {
@@ -69,7 +77,7 @@ const handleSubmit = (e) => {
     text: newTodo,
   };
   todos.push(newTodoObject);
-  localStorage.setItem('todos', JSON.stringify(todos));
+  saveTodos();
 
   displayNewTodo(newTodoObject);
 
