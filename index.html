@@ -8,7 +8,28 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="list-container">
+      <div class="input-container">
+        <h1 class="title">To Do List</h1>
+        <form id="to-do-form">
+          <input id="input" type="text" placeholder="무엇을 하면 좋을까?"></input>
+        </form>
+      </div>
+      <div class="doing-container">
+        <h2 class="sub-title">
+          🔥 해보자고!
+          <span id="todo-count"></span>
+        </h2>
+        <ul id="todo-list"></ul>
+      </div>
+      <div class="finished-container">
+        <h2 class="sub-title">
+          📌 완료한 일들
+          <span id="todo-count"></span>
+        </h2>
+        <ul id="done-list"></ul>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
