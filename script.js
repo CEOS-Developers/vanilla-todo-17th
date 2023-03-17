@@ -24,6 +24,40 @@ class Todo {
   }
 }
 
+const ENTER = 'Enter';
+const ADD_BUTTON = 'add-button';
+const UL = 'UL';
+
+const TODO = false;
+const DONE = true;
+
+const myTodoList = new Todo('hyosin');
+const todoList = document.getElementById('todo-list');
+const doneList = document.getElementById('done-list');
+const inputValue = document.getElementById('input');
+const addButton = document.getElementById(ADD_BUTTON);
+
+function createListUI(id) {
+  let curList =
+    myTodoList.getListItem(id).status === TODO ? todoList : doneList;
+
+  let li = document.createElement('li');
+  li.id = id;
+
+  const text = document.createElement('span');
+  text.innerText = myTodoList.getListItem(id).value;
+
+  const deleteButton = document.createElement('span');
+  deleteButton.innerText = '❎';
+
+  li.addEventListener('click', toggleTodoItem);
+  deleteButton.addEventListener('click', removeListUI);
+
+  li.appendChild(deleteButton);
+  li.appendChild(text);
+  curList.append(li);
+}
+
 function handleInput(e) {
   if (e.key === ENTER || e.target.id === ADD_BUTTON) {
     let id = myTodoList.getNewId();
@@ -34,6 +68,7 @@ function handleInput(e) {
       status: TODO,
     };
     myTodoList.addListItem(newItem);
+    createListUI(id);
 
     inputValue.value = '';
   }
