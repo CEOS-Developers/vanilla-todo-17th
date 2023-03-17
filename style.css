@@ -98,6 +98,10 @@ body {
   padding: 1px;
   border-radius: 50%;
 }
+.circle:hover {
+  cursor: pointer;
+}
+
 .red {
   background-color: var(--red-button);
 }
@@ -124,6 +128,7 @@ body {
   padding: 2px;
 }
 .plusBtn:hover {
+  cursor: pointer;
   background-color: #656565;
 }
 
