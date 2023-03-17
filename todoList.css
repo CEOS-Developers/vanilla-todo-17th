@@ -55,10 +55,14 @@
 
 .todo-lists {
   height: 33%;
+  display: flex;
+  flex-direction: column;
 }
 
 .done-lists {
   height: 34%;
+  display: flex;
+  flex-direction: column;
 }
 
 hr {
