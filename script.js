@@ -11,8 +11,6 @@ const createTodoItem = () => {
   todoList.innerHTML = ''; //todo 중복 방지 위한 초기화
   doneList.innerHTML = '';
 
-  countTodo(); //todo, done 개수 count 함수
-
   todoItemsList.forEach((item) => {
     const todoItem = document.createElement('li');
 
@@ -37,6 +35,8 @@ const createTodoItem = () => {
 
     deleteButton.addEventListener('click', removeTodo); //x 버튼 클릭 시 todo 삭제 함수
   });
+
+  countTodo(); //todo, done 개수 count 함수
 };
 
 const addTodo = (event) => {
