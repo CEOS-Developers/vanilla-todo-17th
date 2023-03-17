@@ -1,13 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
 body{
     background-color: black
 }
 
 .container{
     position: absolute;
-    width: 26rem;
-    left: 50%;
+    width: 50%;
+    left: 25%;
     top : 10%;
-    margin-left: -13rem;
     height: 80%;
     border-style: solid;
     border-radius: 2%;
@@ -57,7 +58,7 @@ body{
     margin-left: 90%;
     background-color: white;
     border: solid 0.5px white;
-    width: 35px;
+    width: 10.5%;
     height: 30px;
     text-align: center;
     color: black;
@@ -86,7 +87,7 @@ body{
 
 .reloadAll_td{
     order: 2;
-    margin-left: 51%;
+    margin-left: 50%;
     background-image: url(icon/reload.png);
     background-color: black;
     border: none;
@@ -145,7 +146,7 @@ tr{
 
 .reloadAll_dn{
     order: 2;
-    margin-left: 52%;
+    margin-left: 50%;
     background-image: url(icon/reload.png);
     background-color: black;
     border: none;
