@@ -79,6 +79,12 @@
   padding: 10px;
 }
 
+.list-container span:hover {
+  cursor: pointer;
+  text-shadow: 0px 0px 20px rgb(235, 235, 235);
+  transition: 0.3s;
+}
+
 .list-container button {
   margin: 0 0 0 1rem;
   background-color: transparent;

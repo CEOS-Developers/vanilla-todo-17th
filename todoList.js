@@ -15,29 +15,45 @@ const saveDoneTodos = () => {
   localStorage.setItem('doneTodos', JSON.stringify(doneTodos));
 };
 
-const deleteTodo = (e) => {
+const removeTodo = (e) => {
   const div = e.target.parentElement;
-  const doneTodoObject = {
-    id: div.id,
-    text: e.target.previousElementSibling.innerText,
-  };
-
   div.remove();
 
   todos = todos.filter((todo) => todo.id != div.id);
+  doneTodos = doneTodos.filter((todo) => todo.id != div.id);
   saveTodos();
-  doneTodos = doneTodos.concat(doneTodoObject);
   saveDoneTodos();
-
-  displayDoneTodo(doneTodoObject);
 };
 
-const deleteDoneTodo = (e) => {
+const moveToDoneTodo = (e) => {
   const div = e.target.parentElement;
+  const doneTodoObject = {
+    id: div.id,
+    text: e.target.innerText,
+  };
 
   div.remove();
+  displayDoneTodo(doneTodoObject);
+
+  todos = todos.filter((todo) => todo.id != div.id);
+  doneTodos = doneTodos.concat(doneTodoObject);
+  saveTodos();
+  saveDoneTodos();
+};
+
+const moveToTodos = (e) => {
+  const div = e.target.parentElement;
+  const todoObject = {
+    id: div.id,
+    text: e.target.innerText,
+  };
+
+  div.remove();
+  displayNewTodo(todoObject);
 
   doneTodos = doneTodos.filter((todo) => todo.id != div.id);
+  todos = todos.concat(todoObject);
+  saveTodos();
   saveDoneTodos();
 };
 
@@ -47,8 +63,9 @@ const displayNewTodo = (newTodo) => {
   const btn = document.createElement('button');
   div.id = newTodo.id;
   span.innerText = newTodo.text;
-  btn.innerText = '✅';
-  btn.addEventListener('click', deleteTodo);
+  btn.innerText = '🗑';
+  span.addEventListener('click', moveToDoneTodo);
+  btn.addEventListener('click', removeTodo);
 
   div.appendChild(span);
   div.appendChild(btn);
@@ -62,7 +79,8 @@ const displayDoneTodo = (doneTodo) => {
   div.id = doneTodo.id;
   span.innerText = doneTodo.text;
   btn.innerText = '🗑';
-  btn.addEventListener('click', deleteDoneTodo);
+  span.addEventListener('click', moveToTodos);
+  btn.addEventListener('click', removeTodo);
 
   div.appendChild(span);
   div.appendChild(btn);
