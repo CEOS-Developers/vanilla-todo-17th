@@ -3,38 +3,40 @@ let todoItemsList = []; //todoList, doneList 모두 포함
 const createTodoItem = () => {
   const savedTodoList = localStorage.getItem('todoItemsList'); //로컬에서 가져오기
 
-  todoItemsList = JSON.parse(savedTodoList); //문자열을 객체로 변환
-
   const todoList = document.getElementById('todo-list');
   const doneList = document.getElementById('done-list');
 
   todoList.innerHTML = ''; //todo 중복 방지 위한 초기화
   doneList.innerHTML = '';
 
-  todoItemsList.forEach((item) => {
-    const todoItem = document.createElement('li');
+  if (savedTodoList) {
+    todoItemsList = JSON.parse(savedTodoList); //문자열에서 객체로 변환
 
-    const todoItemText = document.createElement('span');
-    todoItemText.innerText = item.text;
+    todoItemsList.forEach((item) => {
+      const todoItem = document.createElement('li');
 
-    const deleteButton = document.createElement('button');
-    deleteButton.innerText = '✖';
-    deleteButton.className = 'delete-button';
+      const todoItemText = document.createElement('span');
+      todoItemText.innerText = item.text;
 
-    todoItem.appendChild(todoItemText);
-    todoItem.appendChild(deleteButton);
+      const deleteButton = document.createElement('button');
+      deleteButton.innerText = '✖';
+      deleteButton.className = 'delete-button';
 
-    if (!item.isDone) {
-      //화면에 그려주기
-      todoList.appendChild(todoItem);
-    } else {
-      doneList.appendChild(todoItem);
-    }
+      todoItem.appendChild(todoItemText);
+      todoItem.appendChild(deleteButton);
 
-    todoItemText.addEventListener('click', toggleTodo); //todo 클릭 시 toggle 함수
+      if (!item.isDone) {
+        //화면에 그려주기
+        todoList.appendChild(todoItem);
+      } else {
+        doneList.appendChild(todoItem);
+      }
 
-    deleteButton.addEventListener('click', removeTodo); //x 버튼 클릭 시 todo 삭제 함수
-  });
+      todoItemText.addEventListener('click', toggleTodo); //todo 클릭 시 toggle 함수
+
+      deleteButton.addEventListener('click', removeTodo); //x 버튼 클릭 시 todo 삭제 함수
+    });
+  }
 
   countTodo(); //todo, done 개수 count 함수
 };
