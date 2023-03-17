@@ -3,12 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>Todo</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <p class="title">Things to do</p>
+      <form onsubmit="return false">
+        <input
+          id="inputPlan"
+          type="text"
+          placeholder="Enter your to do!"
+          onkeypress="enterkey()"
+        />
+        <button id="addBtn" type="button" onclick="click_addBtn()">+</button>
+      </form>
+      <hr />
+      <div class="todo">
+        <p class="subTitle">📒to do</p>
+        <div class="todoCount"></div>
+        <ul type="none" id="todoList"></ul>
+      </div>
+      <hr />
+      <div class="done">
+        <p class="subTitle">📂done</p>
+        <div class="doneCount"></div>
+        <ul type="none" id="doneList"></ul>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
