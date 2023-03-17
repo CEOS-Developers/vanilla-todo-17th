@@ -14,7 +14,10 @@ body {
   font-family: 'S-CoreDream-3Light';
   margin: 0;
   cursor: default;
-  background-color: aquamarine;
+  background-image: url('backgroundImg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   height: 100vh;
 
   display: flex;
