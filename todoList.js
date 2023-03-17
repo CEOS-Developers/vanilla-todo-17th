@@ -6,13 +6,15 @@ const doneLists = document.querySelector('.done-lists div');
 
 let todos = [];
 let doneTodos = [];
+const TODOS = 'todos';
+const DONETODOS = 'doneTodos';
 
 const saveTodos = () => {
-  localStorage.setItem('todos', JSON.stringify(todos));
+  localStorage.setItem(TODOS, JSON.stringify(todos));
 };
 
 const saveDoneTodos = () => {
-  localStorage.setItem('doneTodos', JSON.stringify(doneTodos));
+  localStorage.setItem(DONETODOS, JSON.stringify(doneTodos));
 };
 
 const removeTodo = (e) => {
@@ -122,8 +124,8 @@ todoForm.addEventListener('submit', handleSubmit);
 addTodoButton.addEventListener('click', handleSubmit);
 
 // localStorage 저장된 기존 todos, doneTodos display
-const localTodos = localStorage.getItem('todos');
-const localDoneTodos = localStorage.getItem('doneTodos');
+const localTodos = localStorage.getItem(TODOS);
+const localDoneTodos = localStorage.getItem(DONETODOS);
 
 if (localTodos) {
   const savedTodos = JSON.parse(localTodos);
