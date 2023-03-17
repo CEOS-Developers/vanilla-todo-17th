@@ -95,6 +95,7 @@ function rtrnTodo(){
     reloadSum();
 }
 
+//todo와 done 테이블 개수를 업데이트시켜 보여주는 함수
 function reloadSum(){
     var todoTable=document.getElementById("todoTableBody");
     var todo_sum = todoTable.childElementCount;
