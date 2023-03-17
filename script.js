@@ -23,10 +23,12 @@ const toggleTodo = (e) => {
   if (todoItemsId.includes(parseInt(e.target.id))) {
     deleteTodo(e);
     doneItems = [...doneItems, { text: e.target.textContent, id: Date.now() }];
+    localStorage.setItem('done-items', JSON.stringify(doneItems)); //localstorage 수정
     renderDoneList(doneItems);
   } else {
     deleteTodo(e);
     todoItems = [...todoItems, { text: e.target.textContent, id: Date.now() }];
+    localStorage.setItem('todo-items', JSON.stringify(todoItems));
     renderTodoList(todoItems);
   }
 };
@@ -42,6 +44,9 @@ const deleteTodo = (e) => {
   doneItems = doneItems.filter(
     (item) => item.id !== parseInt(e.target.parentElement.id)
   );
+
+  localStorage.setItem('todo-items', JSON.stringify(todoItems)); //localstorage 수정
+  localStorage.setItem('done-items', JSON.stringify(doneItems));
 
   renderTodoList(todoItems);
   renderDoneList(doneItems);
@@ -99,10 +104,31 @@ const addTodo = (e) => {
 
   todoItems = [...todoItems, newTodoObj];
 
+  localStorage.setItem('todo-items', JSON.stringify(todoItems)); //localstorage에 추가
+
   renderTodoList(todoItems);
 };
 
+//localstorage에서 아이템들 가져와서 렌더
+const getItems = () => {
+  const savedTodoItems = localStorage.getItem('todo-items');
+  const savedDoneItems = localStorage.getItem('done-items');
+
+  if (savedTodoItems !== null) {
+    const parsedTodoItems = JSON.parse(savedTodoItems);
+    todoItems = parsedTodoItems;
+    renderTodoList(todoItems);
+  }
+
+  if (savedDoneItems !== null) {
+    const parsedDoneItems = JSON.parse(savedDoneItems);
+    doneItems = parsedDoneItems;
+    renderDoneList(doneItems);
+  }
+};
+
 const init = () => {
+  getItems();
   todoForm.addEventListener('submit', addTodo);
   todoBtn.addEventListener('click', addTodo);
 };
