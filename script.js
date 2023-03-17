@@ -8,6 +8,26 @@ const doneLen = document.querySelector('#done_len');
 const toDoSpan = toDoList.getElementsByTagName("span");
 const doneSpan = doneList.getElementsByTagName("span");
 
+const timeShow = document.querySelector('#time');
+
+function clock() {
+    let time = new Date();
+
+    let month = time.getMonth();
+    let date = time.getDate();
+    let day = time.getDay();
+    let week = ['일', '월', '화', '수', '목', '금', '토'];
+
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    let seconds = time.getSeconds();
+
+    timeShow.innerText = 
+    `${month + 1}월 ${date}일 ${week[day]}요일 ` +
+    `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+        
+}
+
 // todo list 한 줄 만드는 함수
 function makeLi(value){
     let toDoLi = document.createElement("li");
@@ -110,6 +130,8 @@ function init(){
           addToDo(event);
         }
     });
+    clock();
+    setInterval(clock, 1000); // 1초마다 실행
 }
 
 init();
