@@ -49,11 +49,13 @@ function makeLi(value){
 function renderLists(){
     let toDoString = localStorage.getItem("toDoObject");
     let toDoItems = JSON.parse(toDoString);
-    for(let toDoItem of toDoItems.toDo){
-        toDoList.appendChild(makeLi(toDoItem));
-    }
-    for(let doneItem of toDoItems.done){
-        doneList.appendChild(makeLi(doneItem));
+    if(toDoString){
+        for(let toDoItem of toDoItems.toDo){
+            toDoList.appendChild(makeLi(toDoItem));
+        }
+        for(let doneItem of toDoItems.done){
+            doneList.appendChild(makeLi(doneItem));
+        }
     }
     returnLen();
 }
