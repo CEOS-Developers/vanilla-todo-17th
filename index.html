@@ -3,12 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>✏️ Todo-list</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div class="container"></div>
+    <div class="img">
+      <div class="img-cover"></div>
+      <main class="container">
+        <section class="container-input">
+          <h1 class="title">Things to do</h1>
+          <div class="input-wrapper">
+            <input
+              id="input"
+              type="text"
+              value=""
+              autofocus
+              placeholder="📍 Enter your to-do"
+              onKeyPress="handleInput(event)"
+            />
+            <button id="add-button" type="button" onClick="handleInput(event)">
+              +
+            </button>
+          </div>
+        </section>
+        <section class="todo">
+          <h2 class="title">🔥to do</h2>
+          <div class="todo-list">
+            <ul id="todo-list"></ul>
+          </div>
+        </section>
+        <section class="todo">
+          <h2 class="title">🎯done</h2>
+          <div class="done-list">
+            <ul id="done-list"></ul>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
