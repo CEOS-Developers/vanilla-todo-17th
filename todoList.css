@@ -21,11 +21,11 @@
   display: flex;
 }
 
-.input-box {
+#input-form {
   position: relative;
 }
 
-.input-box-bg {
+.input-bg {
   position: absolute;
   width: 17rem;
   height: 2rem;
@@ -33,7 +33,7 @@
   border-radius: 1rem;
 }
 
-.input-box input {
+#input-text {
   position: absolute;
   width: 15rem;
   height: 2rem;
@@ -44,7 +44,7 @@
   font-family: 'Pretendard-Regular';
 }
 
-.input-box input:focus {
+#input-text:focus {
   outline: none;
 }
 
