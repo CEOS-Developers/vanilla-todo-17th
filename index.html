@@ -8,7 +8,33 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="title">
+        <p>TO-DO LIST</p>
+      </div>
+      <div class="dataInput">
+        <input type="text" id="todoText" placeholder="할 일을 입력해주세요" >
+        <input type="button" id="btnAdd" value="+">
+      </div>
+      <div class="todoBox">
+        <div class="todoTitleBox" id="todoTitleBox">
+          <input type="button" class="reloadAll_td" id="reloadAll_td" value="">
+        </div>
+        <table class="todoTableBox">
+          <tbody class="todoTableBody" id="todoTableBody">
+          </tbody>
+        </table>
+      </div>
+      <div class="doneBox">
+        <div class="doneTitle" id="doneTitleBox">
+          <input type="button" class="reloadAll_dn" id="reloadAll_dn" value="">
+        </div>
+        <table class="doneTableBox">
+          <tbody class="doneTableBody" id="doneTableBody">
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
