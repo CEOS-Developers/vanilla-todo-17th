@@ -5,23 +5,16 @@ const doneList = document.querySelector('.done_list');
 const toDoLen = document.querySelector('#todo_len');
 const doneLen = document.querySelector('#done_len');
 
-function returnLen(){
-    const toDoLi = toDoList.getElementsByTagName("li");
-    const doneLi = doneList.getElementsByTagName("li");
-    toDoLen.innerHTML =  `할 일 : ${toDoLi.length}개`;
-    doneLen.innerHTML = `한 일 : ${doneLi.length}개`;
-}
-function addToDo(event){
-    event.preventDefault();
-    if(!toDoInput.value.trim()){
-        alert("할 일을 입력해주세요.");
-        return 0;
-    }
+const toDoLi = toDoList.getElementsByTagName("p");
+const doneLi = doneList.getElementsByTagName("p");
+
+// todo list 한 줄 만드는 함수
+function makeLi(value){
     let toDoLi = document.createElement("li");
     let toDoText = document.createElement('p');
     let deleteBtn = document.createElement('button');
 
-    toDoText.innerText = toDoInput.value;
+    toDoText.innerText = value;
     toDoText.addEventListener("click",moveToDo);
 
     deleteBtn.innerText = "X";
@@ -29,17 +22,63 @@ function addToDo(event){
 
     toDoLi.appendChild(toDoText);
     toDoLi.appendChild(deleteBtn);
+    return toDoLi;
+}
 
-    toDoList.appendChild(toDoLi);
+// localstorage에 저장된 데이터 불러오는 함수
+function renderLists(){
+    let toDoString = localStorage.getItem("toDoObject");
+    let toDoItems = JSON.parse(toDoString);
+    for(let toDoItem of toDoItems.toDo){
+        toDoList.appendChild(makeLi(toDoItem));
+    }
+    for(let doneItem of toDoItems.done){
+        doneList.appendChild(makeLi(doneItem));
+    }
+    returnLen();
+}
+
+// todo item 바뀔 때마다 localstorage에 저장하는 함수
+function storeLists(){
+    let toDoItems = [];
+    let doneItems = [];
+    for (let i = 0; i < toDoLi.length; i++) {
+        let value = toDoLi[i].innerText;
+        toDoItems.push(value);
+    }
+    for (let i = 0; i < doneLi.length; i++) {
+        let value = doneLi[i].innerText;
+        doneItems.push(value);
+    }
+    let toDoObject = {
+        toDo : toDoItems,
+        done : doneItems,
+    }
+    localStorage.setItem("toDoObject",JSON.stringify(toDoObject));
+}
+
+function returnLen(){
+    toDoLen.innerHTML =  `할 일 : ${toDoLi.length}개`;
+    doneLen.innerHTML = `한 일 : ${doneLi.length}개`;
+}
+function addToDo(event){
+    event.preventDefault();
+    if(!toDoInput.value){
+        alert("할 일을 입력해주세요.");
+        return 0;
+    }
+    toDoList.appendChild(makeLi(toDoInput.value));
     
     toDoInput.value = '';
     returnLen();
+    storeLists();
 }
 
 function delToDo(event){
     let deleteItem = event.target.parentElement;
     let removedItem = deleteItem.parentElement.removeChild(deleteItem);
     returnLen();
+    storeLists();
     return removedItem;
 }
 
@@ -53,8 +92,10 @@ function moveToDo(event){
         toDoList.appendChild(delToDo(event));
     }
     returnLen();
+    storeLists();
 }
 function init(){
+    renderLists();
     addBtn.addEventListener("click", addToDo);
     toDoInput.addEventListener("keyup", function (event) {
         if (event.keyCode === 13) {
