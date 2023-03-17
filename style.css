@@ -47,8 +47,16 @@ body{
 .todo_input input{
     width : 80%;
     padding:5px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
 }
 
+.todo_input input:focus {
+    border: 3px solid #555;
+}
 .todo_input p{
     padding-left : 10px;
     line-height: 30px;
