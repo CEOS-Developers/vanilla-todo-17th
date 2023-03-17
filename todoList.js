@@ -7,10 +7,17 @@ let todos = [];
 
 const deleteTodo = (e) => {
   const div = e.target.parentElement;
+  const doneTodoObject = {
+    id: div.id,
+    text: e.target.previousElementSibling.innerText,
+  };
+
   div.remove();
 
   todos = todos.filter((todo) => todo.id != div.id);
   localStorage.setItem('todos', JSON.stringify(todos));
+
+  displayDoneTodo(doneTodoObject);
 };
 
 const displayNewTodo = (newTodo) => {
@@ -25,6 +32,19 @@ const displayNewTodo = (newTodo) => {
   div.appendChild(span);
   div.appendChild(btn);
   todoLists.appendChild(div);
+};
+
+const displayDoneTodo = (doneTodo) => {
+  const div = document.createElement('div');
+  const span = document.createElement('span');
+  const btn = document.createElement('button');
+  div.id = doneTodo.id;
+  span.innerText = doneTodo.text;
+  btn.innerText = '🗑';
+
+  div.appendChild(span);
+  div.appendChild(btn);
+  doneLists.appendChild(div);
 };
 
 const handleSubmit = (e) => {
