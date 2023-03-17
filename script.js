@@ -29,6 +29,7 @@ function addList(todoStr){
     return tr;
 }
 
+//입력창에서 텍스트만 받아내어 todoList()로 넘겨주는 함수
 function receiveText(){
     var todoText = document.querySelector("#todoText");
     if(!todoText.value){
