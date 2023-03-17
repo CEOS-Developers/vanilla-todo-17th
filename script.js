@@ -5,13 +5,13 @@ const doneList = document.querySelector('.done_list');
 const toDoLen = document.querySelector('#todo_len');
 const doneLen = document.querySelector('#done_len');
 
-const toDoLi = toDoList.getElementsByTagName("p");
-const doneLi = doneList.getElementsByTagName("p");
+const toDoSpan = toDoList.getElementsByTagName("span");
+const doneSpan = doneList.getElementsByTagName("span");
 
 // todo list 한 줄 만드는 함수
 function makeLi(value){
     let toDoLi = document.createElement("li");
-    let toDoText = document.createElement('p');
+    let toDoText = document.createElement('span');
     let deleteBtn = document.createElement('button');
 
     toDoText.innerText = value;
@@ -42,12 +42,12 @@ function renderLists(){
 function storeLists(){
     let toDoItems = [];
     let doneItems = [];
-    for (let i = 0; i < toDoLi.length; i++) {
-        let value = toDoLi[i].innerText;
+    for (let i = 0; i < toDoSpan.length; i++) {
+        let value = toDoSpan[i].innerText;
         toDoItems.push(value);
     }
-    for (let i = 0; i < doneLi.length; i++) {
-        let value = doneLi[i].innerText;
+    for (let i = 0; i < doneSpan.length; i++) {
+        let value = doneSpan[i].innerText;
         doneItems.push(value);
     }
     let toDoObject = {
@@ -59,8 +59,8 @@ function storeLists(){
 
 // todo, done item 개수를 갱신하는 함수
 function returnLen(){
-    toDoLen.innerHTML =  `할 일 : ${toDoLi.length}개`;
-    doneLen.innerHTML = `한 일 : ${doneLi.length}개`;
+    toDoLen.innerHTML =  `할 일 : ${toDoSpan.length}개`;
+    doneLen.innerHTML = `한 일 : ${doneSpan.length}개`;
 }
 
 // todo목록에 item을 추가하는 함수
