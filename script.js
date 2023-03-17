@@ -88,6 +88,7 @@ function doneList(){
     reloadSum();
 }
 
+//doneList에서 복귀 버튼을 누르면 다시 todoList로 복귀시켜주는 함수
 function rtrnTodo(){
     this.parentElement.parentElement.remove();
     todoList(this.parentElement.parentElement.innerText);
