@@ -3,12 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla Todo</title>
+    <title>Todo List ✔</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" sizes="120x120" href="oyat_favicon.jpg" />
+    <link rel="stylesheet" href="font.css" />
   </head>
 
   <body>
-    <div class="container"></div>
+    <main>
+      <section class="input-section">
+        <h2>Todo List ✔</h2>
+        <form>
+          <input id="input-todo" type="text" placeholder=" Enter your to do" />
+          <button id="input-button" onclick="addTodo(event)">➕</button>
+        </form>
+      </section>
+
+      <section class="todo-section">
+        <h3>To do...😿<span id="todo-count"></span></h3>
+        <ul id="todo-list"></ul>
+      </section>
+
+      <section class="done-section">
+        <h3>Done..!😻<span id="done-count"></span></h3>
+        <ul id="done-list"></ul>
+      </section>
+    </main>
   </body>
   <script src="script.js"></script>
 </html>
