@@ -1,0 +1,188 @@
+body{
+    background-color: black
+}
+
+.container{
+    position: absolute;
+    width: 26rem;
+    left: 50%;
+    top : 10%;
+    margin-left: -13rem;
+    height: 80%;
+    border-style: solid;
+    border-radius: 2%;
+    border-color: white;
+    align-items: center;
+}
+
+.title{
+    width: 90%;
+    margin-left: 5%;
+    height: 38px;
+    color: white;
+    font-size: 27px;
+    text-align: center;
+    font-weight: 800;
+
+    border-bottom: solid;
+    border-radius: 2%;
+}
+
+.dataInput{
+    margin-top: 1.5rem;
+    position: absolute;
+    margin-left: 10%;
+    width:80%;
+    height: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    position: relative;
+
+}
+
+#todoText{
+    position: absolute;
+    width: 99%;
+    height: 28px;
+    margin-right: 0.2rem;
+    text-align: center;
+    background-color: black;
+    color: gray;
+    border-style:none; 
+}
+
+#btnAdd{
+    position: relative;
+    margin-left: 90%;
+    background-color: white;
+    border: solid 0.5px white;
+    width: 35px;
+    height: 30px;
+    text-align: center;
+    color: black;
+    font-size: 24px;
+}
+
+.todoBox{
+    position: relative;
+    width: 82%;
+    height: 32%;
+    margin-left: 10%;
+    margin-top: 1rem;
+}
+
+.todoTitleBox{
+    width: 100%;
+    color: white;
+    font-size: 25px;
+    height: 26px;
+    text-align: left;
+    font-weight: 600;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+}
+
+.reloadAll_td{
+    order: 2;
+    margin-left: 51%;
+    background-image: url(icon/reload.png);
+    background-color: black;
+    border: none;
+    color : white;
+    width: 24px;
+}
+
+table{
+    width: 96%;
+    margin-top: 2%;
+    margin-left: 4%;   
+}
+
+.todoTableBox{
+    margin-left:2.5%;
+}
+
+tr{
+    display: flex;
+}
+
+.td_txt{
+    width: 100%;
+    border-color: white;
+    color: white;
+    font-size: 18px;
+    font-weight: 250;
+    height: 27px;
+    margin: 0;
+    order: 1;
+}
+
+.td_dlt{
+    order: 2;
+}
+
+.doneBox{
+    position: relative;
+    width: 82%;
+    height: 32%;
+    margin-left: 10%;
+    margin-top: 1rem;
+}
+
+.doneTitle{
+    width: 100%;
+    color: white;
+    font-size: 25px;
+    height: 26px;
+    text-align: left;
+    font-weight: 600;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+}
+
+.reloadAll_dn{
+    order: 2;
+    margin-left: 52%;
+    background-image: url(icon/reload.png);
+    background-color: black;
+    border: none;
+    color : white;
+    width: 24px;
+}
+
+.btn_chk{
+    background-color: black;
+    border: 1px solid greenyellow;
+    border-radius: 5%;
+    height: 22px;
+    width: 45px;
+    color : greenyellow;
+    font-size: 16px;
+    font-weight: 100;
+    margin-right: 1em;
+}
+
+.btn_dlt{
+    background-color: black;
+    border: none;
+    border-radius: 5%;
+    height: 22px;
+    width: 22px;
+    color : white;
+    font-size: 15px;
+}
+
+.btn_rtn{
+    background-color: black;
+    border: 1px solid red;
+    border-radius: 5%;
+    height: 22px;
+    width: 45px;
+    color : red;
+    font-size: 16px;
+    font-weight: 100;
+    margin-right: 1em;
+}
