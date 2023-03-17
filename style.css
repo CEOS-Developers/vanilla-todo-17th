@@ -279,10 +279,10 @@ body {
   overflow-x: hidden;
 }
 #todoDiv {
-  font-family: 'Single Day', cursive;
+  font-family: 'Single Day';
 }
 #doneDiv {
-  font-family: 'Poor Story', cursive;
+  font-family: 'Poor Story';
 }
 
 .todoElem {

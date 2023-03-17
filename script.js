@@ -7,6 +7,7 @@ const todoDiv = document.querySelector('#todoDiv');
 const doneDiv = document.querySelector('#doneDiv');
 const inputTag = document.querySelector('.customInput');
 const tagList = document.querySelectorAll('.tagDiv > div > span');
+const staticHolder = document.querySelectorAll('.staticHolder');
 const todoPlaceHolder = document.getElementById('todoPlaceHolder');
 
 // variables
@@ -21,33 +22,32 @@ const tagNames = [
 const newList = JSON.parse(localStorage.getItem('todoList')) ?? [];
 
 // EventListeners
-// plusIcon control
-plusIcon.addEventListener('click', () => {
+plusIcon.addEventListener('click', handlePlusIconClick);
+tagList.forEach((tag) => tag.addEventListener('click', handleTagClick));
+submitBtn.addEventListener('click', handleSubmitClick);
+staticHolder.forEach((holder) =>
+  holder.addEventListener('click', handleStaticClick)
+);
+// Event Handlers
+function handlePlusIconClick() {
   mainDiv.classList.toggle('covered');
   hoverDiv.classList.toggle('covered');
   todoDiv.classList.toggle('covered');
   if (mainDiv.className !== 'mainDiv covered') {
     inputTag.value = '';
   }
-});
+}
 
-// tagBtn control
-tagList.forEach((tag) => {
-  tag.addEventListener('click', () => {
-    tagList.forEach((whiteTag) => {
-      whiteTag.classList.remove('whiteRing');
-    });
-    tagNames.forEach((tagName) => {
-      if (tag.classList.contains(tagName)) {
-        tag.classList.toggle('whiteRing');
-      }
-    });
+function handleTagClick() {
+  tagList.forEach((whiteTag) => whiteTag.classList.remove('whiteRing'));
+  tagNames.forEach((tagName) => {
+    if (this.classList.contains(tagName)) {
+      this.classList.toggle('whiteRing');
+    }
   });
-});
+}
 
-// submitBtn control
-// submitBtn => (localStorage) => mainDiv
-submitBtn.addEventListener('click', () => {
+function handleSubmitClick() {
   const whiteRingTag = document.querySelector('.whiteRing');
   if (inputValidation()) {
     const inputData = {
@@ -62,91 +62,84 @@ submitBtn.addEventListener('click', () => {
     hoverDiv.classList.toggle('covered');
     location.reload();
   }
-});
+}
 
-// functions
+function handleStaticClick() {
+  this.classList.add('animate__animated', 'animate__headShake');
+  this.addEventListener('animationend', () => {
+    this.classList.remove('animate__animated', 'animate__headShake');
+  });
+}
+
+//  functions
 function inputValidation() {
   inputTag.value = inputTag.value.trim();
   inputTag.value = inputTag.value.replace(/\s+/g, ' ');
   if (inputTag.value === '') {
-    alert('Please enter your todo');
+    alert('Invalid TODO Input!');
     return false;
   }
   return true;
 }
 
-function todoElemGen(data, queryDiv) {
+function createTodoElement(data, queryDiv) {
   const todoElem = document.createElement('div');
-  todoElem.className = `todoElem`;
+  todoElem.className = 'todoElem';
   todoElem.id = data.time;
-  let eslapsedTime = (new Date().getTime() - new Date(data.time)) / (1000 * 60);
-  let classType = data.type.replace('tag', 'font');
-  const todoTitleDiv = document.createElement('div');
-  todoTitleDiv.className = `todoTitle`;
-  todoTitleDiv.innerHTML = data.title;
 
-  const todoTimeDiv = document.createElement('div');
-  todoTimeDiv.className = `todoTime ${classType}`;
-  todoTimeDiv.innerHTML = timeCalculate(eslapsedTime);
+  const elapsedTime = getElapsedTime(data.time);
+  const timeClass = data.type.replace('tag', 'font');
 
-  todoElem.append(todoTitleDiv, todoTimeDiv);
+  const titleDiv = document.createElement('div');
+  titleDiv.className = `todoTitle`;
+  titleDiv.textContent = data.title;
+
+  const timeDiv = document.createElement('div');
+  timeDiv.className = `todoTime ${timeClass}`;
+  timeDiv.textContent = elapsedTime;
+
+  todoElem.append(titleDiv, timeDiv);
   queryDiv.appendChild(todoElem);
 
   todoElem.addEventListener('click', (e) => {
-    todoClickControler(e, todoElem, queryDiv);
+    handleTodoClick(e, todoElem, queryDiv);
   });
 }
 
-function timeCalculate(time_num) {
-  let eslapsedTime = time_num;
-  let eslapsedHour = 0;
-  let eslapsedDay = 0;
-  while (eslapsedTime >= 60) {
-    eslapsedHour += 1;
-    eslapsedTime -= 60;
-  }
-  while (eslapsedHour > 24) {
-    eslapsedDay += 1;
-    eslapsedHour -= 24;
-  }
-  let timeString = '';
-  if (eslapsedDay > 0) {
-    timeString += `${eslapsedDay}d `;
-  }
-  if (eslapsedHour > 0) {
-    timeString += `${eslapsedHour}h `;
-  }
-  if (1 <= eslapsedTime) {
-    timeString += `${eslapsedTime.toFixed()}m`;
-  }
-  if (timeString === '') {
-    timeString = 'just now';
-  }
-  return timeString;
+function getElapsedTime(time_num) {
+  const timeNum = (Date.now() - new Date(time_num)) / (1000 * 60);
+  const days = Math.floor(timeNum / 1440);
+  const hours = Math.floor((timeNum % 1440) / 60);
+  const minutes = Math.floor(timeNum % 60);
+
+  let parts = [];
+  if (days > 0) parts.push(`${days}d`);
+  if (hours % 24 > 0) parts.push(`${hours % 24}h`);
+  if (minutes > 0) parts.push(`${minutes}m`);
+
+  return parts.length > 0 ? parts.join(' ') : 'just now';
 }
 
 // 'todo'와 'done'을 매개변수로 받아서 각각의 리스트를 렌더링
-function renderSubFunc(query) {
-  let listName = query === 'todo' ? 'todoList' : 'doneList';
-  let queryDiv = query === 'todo' ? todoDiv : doneDiv;
+function renderList(container, listName) {
   if (localStorage.getItem(listName) !== null) {
-    while (queryDiv.firstChild) {
-      queryDiv.removeChild(queryDiv.firstChild).remove();
-    }
-  }
-  if (mainDiv.className === 'mainDiv') {
-    let Items = JSON.parse(localStorage.getItem(listName));
-    if (Items) {
-      Items.sort((a, b) => new Date(a.time) - new Date(b.time));
-      Items.forEach((item) => todoElemGen(item, queryDiv));
-    }
+    container.innerHTML = '';
+
+    const items = JSON.parse(localStorage.getItem(listName)) || [];
+    items.sort((a, b) => new Date(a.time) - new Date(b.time));
+    items.forEach((item) => createTodoElement(item, container));
   }
 }
 
 // when plus btn not clicked
-function renderList() {
-  renderSubFunc('todo');
-  renderSubFunc('done');
+function render() {
+  renderList(todoDiv, 'todoList');
+  renderList(doneDiv, 'doneList');
+
+  setInterval(() => {
+    renderList(todoDiv, 'todoList');
+    renderList(doneDiv, 'doneList');
+  }, 30000);
 }
 
 // div가 클릭되었을 때 그 div의 어느 부분을 클릭했는지 계산
@@ -157,119 +150,115 @@ function getClickRatio(div, e) {
   return x / width;
 }
 
-function todoClickControler(e, todoElem, queryDiv) {
+function handleTodoClick(e, todoElem, queryDiv) {
   let clickratio = getClickRatio(todoElem, e);
+
   if (todoElem.classList.contains('scrollLeft')) {
-    clickratio = clickratio - 0.3;
+    clickratio -= 0.3;
   } else if (todoElem.classList.contains('scrollRight')) {
-    clickratio = clickratio + 0.3;
+    clickratio += 0.3;
   }
 
   if (clickratio < 0.5) {
     if (todoElem.classList.contains('scrollRight')) {
-      todoElem.classList.toggle('scrollRight');
+      toggleScrollClass(todoElem, 'scrollRight');
     } else if (todoElem.classList.contains('scrollLeft')) {
-      if (queryDiv === todoDiv) {
-        todoElem.classList.add(
-          'animate__animated',
-          'animate__lightSpeedOutLeft'
-        );
-        todoElem.addEventListener('animationend', () => {
-          deleteTodoElem(todoElem);
-        });
-      } else {
-        todoElem.classList.add(
-          'animate__animated',
-          'animate__lightSpeedOutLeft'
-        );
-        todoElem.addEventListener('animationend', () => {
-          moveToTodoList(todoElem);
-        });
-      }
+      handleLeftScrollClick(todoElem, queryDiv);
     } else {
-      todoElem.classList.toggle('scrollLeft');
+      toggleScrollClass(todoElem, 'scrollLeft');
     }
   } else {
     if (queryDiv === todoDiv) {
       if (todoElem.classList.contains('scrollLeft')) {
-        todoElem.classList.toggle('scrollLeft');
+        toggleScrollClass(todoElem, 'scrollLeft');
       } else if (todoElem.classList.contains('scrollRight')) {
-        todoElem.classList.add(
-          'animate__animated',
-          'animate__lightSpeedOutRight'
-        );
-        todoElem.addEventListener('animationend', () => {
-          moveToDoneList(todoElem);
-        });
+        handleRightScrollClick(todoElem);
       } else {
-        todoElem.classList.toggle('scrollRight');
+        toggleScrollClass(todoElem, 'scrollRight');
       }
     } else {
-      if (todoElem.classList.contains('scrollLeft')) {
-        todoElem.classList.toggle('scrollLeft');
-      } else {
-        todoElem.classList.add('animate__animated', 'animate__headShake');
-        todoElem.addEventListener('animationend', () => {
-          todoElem.classList.remove('animate__animated', 'animate__headShake');
-        });
-      }
+      handleDoneItemClick(todoElem);
     }
+  }
+}
+
+function toggleScrollClass(todoElem, className) {
+  todoElem.classList.toggle(className);
+}
+
+function handleLeftScrollClick(todoElem, queryDiv) {
+  if (queryDiv === todoDiv) {
+    todoElem.classList.add('animate__animated', 'animate__lightSpeedOutLeft');
+    todoElem.addEventListener('animationend', () => {
+      deleteTodoElem(todoElem);
+    });
+  } else {
+    todoElem.classList.add('animate__animated', 'animate__lightSpeedOutLeft');
+    todoElem.addEventListener('animationend', () => {
+      moveToTodoList(todoElem);
+    });
+  }
+}
+
+function handleRightScrollClick(todoElem) {
+  todoElem.classList.add('animate__animated', 'animate__lightSpeedOutRight');
+  todoElem.addEventListener('animationend', () => {
+    moveToDoneList(todoElem);
+  });
+}
+
+function handleDoneItemClick(todoElem) {
+  if (todoElem.classList.contains('scrollLeft')) {
+    toggleScrollClass(todoElem, 'scrollLeft');
+  } else {
+    todoElem.classList.add('animate__animated', 'animate__headShake');
+    todoElem.addEventListener('animationend', () => {
+      todoElem.classList.remove('animate__animated', 'animate__headShake');
+    });
+  }
+}
+
+function getElemData(todoElem) {
+  const title = todoElem.children[0].innerHTML;
+  const type = todoElem.children[1].classList[1].replace('font', 'tag');
+  const time = todoElem.id;
+  return { title, type, time };
+}
+
+function moveItem(sourceListKey, destListKey, itemData) {
+  const sourceList = JSON.parse(localStorage.getItem(sourceListKey)) ?? [];
+  const destList = JSON.parse(localStorage.getItem(destListKey)) ?? [];
+  const index = sourceList.findIndex((item) => item.time === itemData.time);
+  if (index !== -1) {
+    sourceList.splice(index, 1);
+    destList.push(itemData);
+    if (sourceList.length === 0) {
+      localStorage.removeItem(sourceListKey);
+    } else {
+      localStorage.setItem(sourceListKey, JSON.stringify(sourceList));
+    }
+    if (destList.length === 0) {
+      localStorage.removeItem(destListKey);
+    } else {
+      localStorage.setItem(destListKey, JSON.stringify(destList));
+    }
+    location.reload();
   }
 }
 
 function moveToDoneList(todoElem) {
-  let typeElem = todoElem.children[1].classList[1].replace('font', 'tag');
-  let elemData = {
-    title: todoElem.children[0].innerHTML,
-    type: typeElem,
-    time: todoElem.id,
-  };
-
-  let todoList = JSON.parse(localStorage.getItem('todoList'));
-  let doneList = JSON.parse(localStorage.getItem('doneList')) ?? [];
-  let index = todoList.findIndex((item) => item.time === elemData.time);
-
-  if (index !== -1) {
-    todoList.splice(index, 1);
-    doneList.push(elemData);
-    if (todoList.length === 0) {
-      localStorage.removeItem('todoList');
-    } else {
-      localStorage.setItem('todoList', JSON.stringify(todoList));
-    }
-    localStorage.setItem('doneList', JSON.stringify(doneList));
-    location.reload();
-  }
+  const elemData = getElemData(todoElem);
+  moveItem('todoList', 'doneList', elemData);
 }
 
 function moveToTodoList(todoElem) {
-  let typeElem = todoElem.children[1].classList[1].replace('font', 'tag');
-  let elemData = {
-    title: todoElem.children[0].innerHTML,
-    type: typeElem,
-    time: todoElem.id,
-  };
-
-  let todoList = JSON.parse(localStorage.getItem('todoList')) ?? [];
-  let doneList = JSON.parse(localStorage.getItem('doneList'));
-  let index = doneList.findIndex((item) => item.time === elemData.time);
-
-  if (index !== -1) {
-    doneList.splice(index, 1);
-    todoList.push(elemData);
-    localStorage.setItem('todoList', JSON.stringify(todoList));
-    if (doneList.length === 0) {
-      localStorage.removeItem('doneList');
-    } else {
-      localStorage.setItem('doneList', JSON.stringify(doneList));
-    }
-    location.reload();
-  }
+  const elemData = getElemData(todoElem);
+  moveItem('doneList', 'todoList', elemData);
 }
 
 function deleteTodoElem(todoElem) {
-  let todoList = JSON.parse(localStorage.getItem('todoList'));
-  let index = todoList.findIndex((item) => item.time === todoElem.id);
+  const todoList = JSON.parse(localStorage.getItem('todoList')) ?? [];
+  const index = todoList.findIndex((item) => item.time === todoElem.id);
   if (index !== -1) {
     todoList.splice(index, 1);
     if (todoList.length === 0) {
@@ -283,8 +272,7 @@ function deleteTodoElem(todoElem) {
 
 //처음에 함수 한번 호출
 function init() {
-  renderList();
-  setInterval(renderList, 30000);
+  render();
 }
 
-init();
+window.addEventListener('load', init);
