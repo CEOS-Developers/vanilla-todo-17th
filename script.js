@@ -41,6 +41,7 @@ function receiveText(){
     todoList(todoStr);
 }
 
+//입력된 텍스트를 todoList에 테이블 형식으로 추가시켜주는 함수
 function todoList(todoStr){
     var tr = addList(todoStr);
 
