@@ -4,6 +4,7 @@ const todoLists = document.querySelector('.todo-lists div');
 const doneLists = document.querySelector('.done-lists div');
 
 let todos = [];
+let doneTodos = [];
 
 const deleteTodo = (e) => {
   const div = e.target.parentElement;
@@ -16,8 +17,19 @@ const deleteTodo = (e) => {
 
   todos = todos.filter((todo) => todo.id != div.id);
   localStorage.setItem('todos', JSON.stringify(todos));
+  doneTodos = doneTodos.concat(doneTodoObject);
+  localStorage.setItem('doneTodos', JSON.stringify(doneTodos));
 
   displayDoneTodo(doneTodoObject);
+};
+
+const deleteDoneTodo = (e) => {
+  const div = e.target.parentElement;
+
+  div.remove();
+
+  doneTodos = doneTodos.filter((todo) => todo.id != div.id);
+  localStorage.setItem('doneTodos', JSON.stringify(doneTodos));
 };
 
 const displayNewTodo = (newTodo) => {
@@ -41,6 +53,7 @@ const displayDoneTodo = (doneTodo) => {
   div.id = doneTodo.id;
   span.innerText = doneTodo.text;
   btn.innerText = '🗑';
+  btn.addEventListener('click', deleteDoneTodo);
 
   div.appendChild(span);
   div.appendChild(btn);
