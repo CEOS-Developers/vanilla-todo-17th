@@ -1,8 +1,8 @@
-const todoForm = document.getElementById('input-form');
-const todoInput = document.querySelector('#input-form input');
+const todoForm = document.getElementById('inputForm');
+const todoInput = document.querySelector('#inputForm input');
 const addTodoButton = document.getElementsByClassName('add-button')[0];
-const todoLists = document.querySelector('.todo-lists .list-container');
-const doneLists = document.querySelector('.done-lists .list-container');
+const todoLists = document.querySelector('.section-todo .list-container');
+const doneLists = document.querySelector('.section-done .list-container');
 const numOfTodos = document.getElementById('numOfTodos');
 const numOfDones = document.getElementById('numOfDones');
 
@@ -91,8 +91,7 @@ const displayNewTodo = (newTodo) => {
   span.addEventListener('click', moveToDoneTodo);
   btn.addEventListener('click', removeTodo);
 
-  div.appendChild(span);
-  div.appendChild(btn);
+  div.append(span, btn);
   todoLists.appendChild(div);
   displayNum();
 };
@@ -107,8 +106,7 @@ const displayDoneTodo = (doneTodo) => {
   span.addEventListener('click', moveToTodos);
   btn.addEventListener('click', removeTodo);
 
-  div.appendChild(span);
-  div.appendChild(btn);
+  div.append(span, btn);
   doneLists.appendChild(div);
 };
 
@@ -117,7 +115,7 @@ const handleSubmit = (e) => {
 
   const newTodo = todoInput.value;
 
-  if (newTodo.length !== 0) {
+  if (newTodo.trim()) {
     const newTodoObject = {
       id: Date.now(),
       text: newTodo,

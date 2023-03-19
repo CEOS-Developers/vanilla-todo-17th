@@ -15,14 +15,14 @@
   font-size: 2rem;
 }
 
-.todo-input {
+.section-input {
   width: calc(100% - 20px);
   height: 2rem;
   margin: 10px;
   display: flex;
 }
 
-#input-form {
+#inputForm {
   position: relative;
 }
 
@@ -34,7 +34,7 @@
   border-radius: 1rem;
 }
 
-#input-text {
+#inputText {
   position: absolute;
   width: 15rem;
   height: 2rem;
@@ -45,7 +45,7 @@
   font-family: 'Pretendard-Regular';
 }
 
-#input-text:focus {
+#inputText:focus {
   outline: none;
 }
 
@@ -55,13 +55,13 @@
   cursor: pointer;
 }
 
-.todo-lists {
+.section-todo {
   height: 33%;
   display: flex;
   flex-direction: column;
 }
 
-.done-lists {
+.section-done {
   height: 34%;
   display: flex;
   flex-direction: column;

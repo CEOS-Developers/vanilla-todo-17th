@@ -10,24 +10,24 @@
 
   <body>
     <div class="container">
-      <div class="title"><span>Things To Do</span></div>
+      <section class="title"><span>Things To Do</span></section>
 
-      <div class="todo-input">
-        <form id="input-form">
+      <section class="section-input">
+        <form id="inputForm">
           <div class="input-bg"></div>
           <input
-            id="input-text"
+            id="inputText"
             type="text"
             placeholder="type here ..."
             maxlength="15"
           />
         </form>
         <span class="add-button">+</span>
-      </div>
+      </section>
 
       <hr />
 
-      <div class="todo-lists">
+      <section class="section-todo">
         <div class="list-title">
           <span>📂 To Do</span>
           <span> ( </span>
@@ -35,11 +35,11 @@
           <span> )</span>
         </div>
         <div class="list-container"></div>
-      </div>
+      </section>
 
       <hr />
 
-      <div class="done-lists">
+      <section class="section-done">
         <div class="list-title">
           <span>🎉 Done</span>
           <span> ( </span>
@@ -47,7 +47,7 @@
           <span> )</span>
         </div>
         <div class="list-container"></div>
-      </div>
+      </section>
     </div>
   </body>
   <script src="todoList.js"></script>
