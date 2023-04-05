@@ -1,0 +1,104 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: flex; /*수직으로 쌓임*/
+  flex-direction: column;
+  width: 23rem;
+  height: 43rem;
+  border-radius: 2rem;
+  box-shadow: 0.4rem 0.4rem 0.4rem 0.4rem rgb(168, 168, 168);
+  margin: 0 auto; /*수평 중앙 정렬*/
+}
+
+.title {
+  color: rgb(255, 182, 93);
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-left: 1rem;
+  margin-bottom: 0;
+}
+
+form {
+  display: flex;
+  height: 10%;
+  align-items: center; /*교차축 정렬*/
+  justify-content: center; /*주축 정렬*/
+}
+
+#inputPlan {
+  border-radius: 0.8rem;
+  border: none;
+  width: 75%;
+  height: 2rem;
+  background-color: rgb(255, 225, 170);
+  font-size: 1rem;
+  outline: none;
+}
+
+#inputPlan::placeholder {
+  color: rgb(255, 236, 200);
+}
+
+#addBtn {
+  border-radius: 100%;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  background-color: rgb(255, 225, 170);
+  font-size: 1rem;
+  color: rgb(255, 182, 93);
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+hr {
+  width: 100%;
+  border: thin solid rgb(255, 225, 170);
+}
+
+.subTitle {
+  color: rgb(255, 182, 93);
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.todo {
+  height: 40%;
+}
+
+.done {
+  height: 40%;
+}
+
+#todoList,
+#doneList {
+  font-size: 1rem;
+}
+
+li {
+  margin-bottom: 0.3rem;
+}
+
+.deleteBtn {
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.addList,
+.doneList {
+  cursor: pointer;
+}
+
+.todoCount,
+.doneCount {
+  color: rgb(255, 182, 93);
+  display: flex;
+  justify-content: end;
+  margin-right: 1rem;
+}
