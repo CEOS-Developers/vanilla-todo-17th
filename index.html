@@ -8,7 +8,35 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <h1 class="title">TO-DO LIST</h1>
+
+      <section class="input-box">
+        <form class="input-box__form">
+          <input
+            class="input-box__input"
+            type="text"
+            placeholder="WRITE A TO-DO"
+            required
+          />
+        </form>
+        <button class="input-box__btn">➕</button>
+      </section>
+
+      <section class="todo-box">
+        <h2 class="todo-box__title">
+          🏃‍♂️ TO-DO<span class="todo-box__count"></span>
+        </h2>
+        <ul class="todo-box__items"></ul>
+      </section>
+
+      <section class="done-box">
+        <h2 class="done-box__title">
+          🤸‍♂️ DONE<span class="done-box__count"></span>
+        </h2>
+        <ul class="done-box__items"></ul>
+      </section>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
